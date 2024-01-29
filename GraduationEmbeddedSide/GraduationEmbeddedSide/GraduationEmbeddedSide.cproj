@@ -122,21 +122,9 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="LIB\BIT_MATH.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="LIB\MATH.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="LIB\STD_TYPES.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="LIB" />
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>
