@@ -4,11 +4,7 @@
 
 main.c
 
-MCAL\GIE\GIE.c
+MCAL\DIO\DIO.c
 
-MCAL\UART\UART.c
-
-MCAL\UART\UART_cfg.c
-
-MCAL\UART\UART_service.c
+MCAL\DIO\DIO_Cfg.c
 

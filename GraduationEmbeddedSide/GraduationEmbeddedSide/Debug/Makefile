@@ -35,17 +35,14 @@ LINKER_SCRIPT_DEP:=
 SUBDIRS :=  \
 ../LIB \
 ../MCAL \
-../MCAL/GIE \
-../MCAL/UART
+../MCAL/DIO
 
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
 ../main.c \
-../MCAL/GIE/GIE.c \
-../MCAL/UART/UART.c \
-../MCAL/UART/UART_cfg.c \
-../MCAL/UART/UART_service.c
+../MCAL/DIO/DIO.c \
+../MCAL/DIO/DIO_Cfg.c
 
 
 PREPROCESSING_SRCS += 
@@ -56,31 +53,23 @@ ASM_SRCS +=
 
 OBJS +=  \
 main.o \
-MCAL/GIE/GIE.o \
-MCAL/UART/UART.o \
-MCAL/UART/UART_cfg.o \
-MCAL/UART/UART_service.o
+MCAL/DIO/DIO.o \
+MCAL/DIO/DIO_Cfg.o
 
 OBJS_AS_ARGS +=  \
 main.o \
-MCAL/GIE/GIE.o \
-MCAL/UART/UART.o \
-MCAL/UART/UART_cfg.o \
-MCAL/UART/UART_service.o
+MCAL/DIO/DIO.o \
+MCAL/DIO/DIO_Cfg.o
 
 C_DEPS +=  \
 main.d \
-MCAL/GIE/GIE.d \
-MCAL/UART/UART.d \
-MCAL/UART/UART_cfg.d \
-MCAL/UART/UART_service.d
+MCAL/DIO/DIO.d \
+MCAL/DIO/DIO_Cfg.d
 
 C_DEPS_AS_ARGS +=  \
 main.d \
-MCAL/GIE/GIE.d \
-MCAL/UART/UART.d \
-MCAL/UART/UART_cfg.d \
-MCAL/UART/UART_service.d
+MCAL/DIO/DIO.d \
+MCAL/DIO/DIO_Cfg.d
 
 OUTPUT_FILE_PATH +=GraduationEmbeddedSide.elf
 
@@ -103,28 +92,14 @@ LINKER_SCRIPT_DEP+=
 	@echo Finished building: $<
 	
 
-MCAL/GIE/GIE.o: ../MCAL/GIE/GIE.c
+MCAL/DIO/DIO.o: ../MCAL/DIO/DIO.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega128a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega128a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
-MCAL/UART/UART.o: ../MCAL/UART/UART.c
-	@echo Building file: $<
-	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega128a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega128a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
-MCAL/UART/UART_cfg.o: ../MCAL/UART/UART_cfg.c
-	@echo Building file: $<
-	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega128a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega128a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
-MCAL/UART/UART_service.o: ../MCAL/UART/UART_service.c
+MCAL/DIO/DIO_Cfg.o: ../MCAL/DIO/DIO_Cfg.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega128a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega128a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
