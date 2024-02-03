@@ -1,0 +1,6 @@
+MCAL/UART/UART_Cfg.d MCAL/UART/UART_Cfg.o: ../MCAL/UART/UART_Cfg.c \
+ ../MCAL/UART/UART_Cfg.h ../MCAL/UART/UART_Types.h
+
+../MCAL/UART/UART_Cfg.h:
+
+../MCAL/UART/UART_Types.h:
