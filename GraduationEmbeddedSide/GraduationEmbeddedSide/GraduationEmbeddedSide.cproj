@@ -170,6 +170,21 @@
     <Compile Include="MCAL\SPI\SPI_Types.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="MCAL\TWI\TWI.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\TWI\TWI.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\TWI\TWI_Cfg.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\TWI\TWI_Registers.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\TWI\TWI_Types.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="MCAL\UART\UART.c">
       <SubType>compile</SubType>
     </Compile>
@@ -193,6 +208,7 @@
     <Folder Include="LIB" />
     <Folder Include="MCAL" />
     <Folder Include="MCAL\DIO" />
+    <Folder Include="MCAL\TWI" />
     <Folder Include="MCAL\SPI" />
     <Folder Include="MCAL\UART" />
   </ItemGroup>
