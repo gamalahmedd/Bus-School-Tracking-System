@@ -36,6 +36,7 @@ SUBDIRS :=  \
 ../LIB \
 ../MCAL \
 ../MCAL/DIO \
+../MCAL/TWI \
 ../MCAL/SPI \
 ../MCAL/UART
 
@@ -47,6 +48,7 @@ C_SRCS +=  \
 ../MCAL/DIO/DIO_Cfg.c \
 ../MCAL/SPI/SPI.c \
 ../MCAL/SPI/SPI_Cfg.c \
+../MCAL/TWI/TWI.c \
 ../MCAL/UART/UART.c \
 ../MCAL/UART/UART_Cfg.c
 
@@ -63,6 +65,7 @@ MCAL/DIO/DIO.o \
 MCAL/DIO/DIO_Cfg.o \
 MCAL/SPI/SPI.o \
 MCAL/SPI/SPI_Cfg.o \
+MCAL/TWI/TWI.o \
 MCAL/UART/UART.o \
 MCAL/UART/UART_Cfg.o
 
@@ -72,6 +75,7 @@ MCAL/DIO/DIO.o \
 MCAL/DIO/DIO_Cfg.o \
 MCAL/SPI/SPI.o \
 MCAL/SPI/SPI_Cfg.o \
+MCAL/TWI/TWI.o \
 MCAL/UART/UART.o \
 MCAL/UART/UART_Cfg.o
 
@@ -81,6 +85,7 @@ MCAL/DIO/DIO.d \
 MCAL/DIO/DIO_Cfg.d \
 MCAL/SPI/SPI.d \
 MCAL/SPI/SPI_Cfg.d \
+MCAL/TWI/TWI.d \
 MCAL/UART/UART.d \
 MCAL/UART/UART_Cfg.d
 
@@ -90,6 +95,7 @@ MCAL/DIO/DIO.d \
 MCAL/DIO/DIO_Cfg.d \
 MCAL/SPI/SPI.d \
 MCAL/SPI/SPI_Cfg.d \
+MCAL/TWI/TWI.d \
 MCAL/UART/UART.d \
 MCAL/UART/UART_Cfg.d
 
@@ -136,6 +142,13 @@ MCAL/SPI/SPI.o: ../MCAL/SPI/SPI.c
 	
 
 MCAL/SPI/SPI_Cfg.o: ../MCAL/SPI/SPI_Cfg.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega128a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega128a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+MCAL/TWI/TWI.o: ../MCAL/TWI/TWI.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega128a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega128a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

@@ -80,9 +80,9 @@ void UART1_Transmit(u_int8 Data)
 	UDR1_Register = Data;
 }
 
-void UART0_TransmitString(u_int8 * String)
+void UART0_TransmitString(u_int8 *String)
 {
-	while(String != 0)
+	while(*String != '\0')
 	{
 		UART0_Transmit(*String);
 		String++;

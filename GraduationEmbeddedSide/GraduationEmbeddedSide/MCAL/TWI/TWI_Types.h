@@ -62,7 +62,7 @@ typedef enum
 {
 	SL_RX_SLA_W_ACK = 0x60,
 	SL_RX_D_ACK = 0x80,
-	SL_TX_D_NACK = 0x88
+	SL_RX_D_NACK = 0x88
 } Slave_Receiver_Mode_Status;
 
 #endif

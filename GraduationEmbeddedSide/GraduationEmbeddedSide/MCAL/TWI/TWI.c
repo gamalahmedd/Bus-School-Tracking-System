@@ -10,14 +10,14 @@ void TWI_MasterInit(u_int8 Address, u_int32 F_TWI, TWI_Prescaler_Value Prescaler
 		case TWI_Prescaler_1:
 			PrescalerValue = 1;
 			break;
-		case TWI_Prescaler_4
+		case TWI_Prescaler_4:
 			PrescalerValue = 4;
 			break;
 		case TWI_Prescaler_16:
 			PrescalerValue = 16;
 			break;
 		case TWI_Prescaler_64:
-			PrescalerValue = 64
+			PrescalerValue = 64;
 			break;
 	}
 	TWBR_Register = (((F_CPU/F_TWI)-16)/(2*(4^PrescalerValue)));
@@ -25,7 +25,7 @@ void TWI_MasterInit(u_int8 Address, u_int32 F_TWI, TWI_Prescaler_Value Prescaler
 
 void TWI_SlaveInit(u_int8 Address)
 {
-	TWAR = Address;
+	TWAR_Register = Address;
 }
 
 void TWI_MasterStart(void)
