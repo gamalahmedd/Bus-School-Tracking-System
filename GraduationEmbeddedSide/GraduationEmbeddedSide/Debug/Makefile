@@ -33,6 +33,7 @@ LINKER_SCRIPT_DEP:=
 
 # Every subdirectory with source files must be described here
 SUBDIRS :=  \
+../HAL/LCD \
 ../LIB \
 ../MCAL \
 ../MCAL/DIO \
@@ -40,11 +41,14 @@ SUBDIRS :=  \
 ../MCAL/EXTI \
 ../MCAL/TWI \
 ../MCAL/SPI \
-../MCAL/UART
+../MCAL/UART \
+../HAL
 
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
+../HAL/LCD/LCD.c \
+../HAL/LCD/LCD_Config.c \
 ../main.c \
 ../MCAL/DIO/DIO.c \
 ../MCAL/DIO/DIO_Cfg.c \
@@ -64,6 +68,8 @@ ASM_SRCS +=
 
 
 OBJS +=  \
+HAL/LCD/LCD.o \
+HAL/LCD/LCD_Config.o \
 main.o \
 MCAL/DIO/DIO.o \
 MCAL/DIO/DIO_Cfg.o \
@@ -76,6 +82,8 @@ MCAL/UART/UART.o \
 MCAL/UART/UART_Cfg.o
 
 OBJS_AS_ARGS +=  \
+HAL/LCD/LCD.o \
+HAL/LCD/LCD_Config.o \
 main.o \
 MCAL/DIO/DIO.o \
 MCAL/DIO/DIO_Cfg.o \
@@ -88,6 +96,8 @@ MCAL/UART/UART.o \
 MCAL/UART/UART_Cfg.o
 
 C_DEPS +=  \
+HAL/LCD/LCD.d \
+HAL/LCD/LCD_Config.d \
 main.d \
 MCAL/DIO/DIO.d \
 MCAL/DIO/DIO_Cfg.d \
@@ -100,6 +110,8 @@ MCAL/UART/UART.d \
 MCAL/UART/UART_Cfg.d
 
 C_DEPS_AS_ARGS +=  \
+HAL/LCD/LCD.d \
+HAL/LCD/LCD_Config.d \
 main.d \
 MCAL/DIO/DIO.d \
 MCAL/DIO/DIO_Cfg.d \
@@ -125,6 +137,20 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+HAL/LCD/LCD.o: ../HAL/LCD/LCD.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega128a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega128a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+HAL/LCD/LCD_Config.o: ../HAL/LCD/LCD_Config.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega128a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega128a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 ./main.o: .././main.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
