@@ -1,16 +1,13 @@
-main.d main.o: .././main.c .././MCAL/UART/UART.h \
- .././MCAL/UART/../../LIB/STD_TYPES.h .././MCAL/UART/../../LIB/BITMATH.h \
- .././MCAL/UART/UART_Registers.h .././MCAL/UART/UART_Cfg.h \
- .././MCAL/UART/UART_Types.h
+main.d main.o: .././main.c .././MCAL/EXTI/EXTI.h \
+ .././MCAL/EXTI/EXTI_Registers.h .././MCAL/EXTI/../../LIB/STD_TYPES.h \
+ .././MCAL/EXTI/EXTI_Types.h .././MCAL/EXTI/../../LIB/BITMATH.h
 
-.././MCAL/UART/UART.h:
+.././MCAL/EXTI/EXTI.h:
 
-.././MCAL/UART/../../LIB/STD_TYPES.h:
+.././MCAL/EXTI/EXTI_Registers.h:
 
-.././MCAL/UART/../../LIB/BITMATH.h:
+.././MCAL/EXTI/../../LIB/STD_TYPES.h:
 
-.././MCAL/UART/UART_Registers.h:
+.././MCAL/EXTI/EXTI_Types.h:
 
-.././MCAL/UART/UART_Cfg.h:
-
-.././MCAL/UART/UART_Types.h:
+.././MCAL/EXTI/../../LIB/BITMATH.h:

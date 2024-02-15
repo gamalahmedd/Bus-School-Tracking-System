@@ -1,0 +1,69 @@
+#ifndef EXTI_TYPES_H_
+#define EXTI_TYPES_H_
+
+typedef enum
+{
+	ISC00 = 0,
+	ISC01,
+	ISC10,
+	ISC11,
+	ISC20,
+	ISC21,
+	ISC30,
+	ISC31,	
+}EICRA_Bits;
+
+typedef enum
+{
+	ISC40 = 0,
+	ISC41,
+	ISC50,
+	ISC51,
+	ISC60,
+	ISC61,
+	ISC70,
+	ISC71,
+}EICRB_Bits;
+
+typedef enum
+{
+	INT0,
+	INT1,
+	INT2,
+	INT3,
+	INT4,
+	INT5,
+	INT6,
+	INT7,
+}EIMSK_Bits;
+
+
+typedef enum
+{
+	EXT_INTERRUPT0=0,
+	EXT_INTERRUPT1,
+	EXT_INTERRUPT2,
+	EXT_INTERRUPT3,
+	EXT_INTERRUPT4,
+	EXT_INTERRUPT5,
+	EXT_INTERRUPT6,
+	EXT_INTERRUPT7,
+}EXT_INTERRUPT_Types;
+
+typedef enum
+{
+	LOW_LEVEL=0,
+	BOTH_EDGES,
+	FALLING_EDGE,
+	RISING_EDGE
+}SNC_MODE_Types;
+
+typedef enum
+{
+	EXT_INTERRUPT_ENABLE=0,
+	EXT_INTERRUPT_DISABLE,
+}EXT_INTERRUPT_STATE_Types;
+
+
+
+#endif

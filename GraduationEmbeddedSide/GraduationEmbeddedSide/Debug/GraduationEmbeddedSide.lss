@@ -3,29 +3,27 @@ GraduationEmbeddedSide.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000012  00800100  0000027a  000002ee  2**0
+  0 .data         00000000  00800100  00800100  00000112  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         0000027a  00000000  00000000  00000074  2**1
+  1 .text         000000be  00000000  00000000  00000054  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .comment      00000030  00000000  00000000  00000300  2**0
+  2 .comment      00000030  00000000  00000000  00000112  2**0
                   CONTENTS, READONLY
-  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000330  2**2
+  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000144  2**2
                   CONTENTS, READONLY
-  4 .debug_aranges 00000090  00000000  00000000  00000370  2**0
+  4 .debug_aranges 00000020  00000000  00000000  00000184  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   00001013  00000000  00000000  00000400  2**0
+  5 .debug_info   000007f6  00000000  00000000  000001a4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 000009b7  00000000  00000000  00001413  2**0
+  6 .debug_abbrev 00000761  00000000  00000000  0000099a  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   0000056a  00000000  00000000  00001dca  2**0
+  7 .debug_line   000001a1  00000000  00000000  000010fb  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  000000dc  00000000  00000000  00002334  2**2
+  8 .debug_frame  00000024  00000000  00000000  0000129c  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    000008cf  00000000  00000000  00002410  2**0
+  9 .debug_str    000003f1  00000000  00000000  000012c0  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    00000242  00000000  00000000  00002cdf  2**0
-                  CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000058  00000000  00000000  00002f21  2**0
+ 10 .debug_ranges 00000010  00000000  00000000  000016b1  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -114,289 +112,31 @@ Disassembly of section .text:
   98:	11 e0       	ldi	r17, 0x01	; 1
   9a:	a0 e0       	ldi	r26, 0x00	; 0
   9c:	b1 e0       	ldi	r27, 0x01	; 1
-  9e:	ea e7       	ldi	r30, 0x7A	; 122
-  a0:	f2 e0       	ldi	r31, 0x02	; 2
+  9e:	ee eb       	ldi	r30, 0xBE	; 190
+  a0:	f0 e0       	ldi	r31, 0x00	; 0
   a2:	00 e0       	ldi	r16, 0x00	; 0
   a4:	0b bf       	out	0x3b, r16	; 59
   a6:	02 c0       	rjmp	.+4      	; 0xac <__do_copy_data+0x14>
   a8:	07 90       	elpm	r0, Z+
   aa:	0d 92       	st	X+, r0
-  ac:	a2 31       	cpi	r26, 0x12	; 18
+  ac:	a0 30       	cpi	r26, 0x00	; 0
   ae:	b1 07       	cpc	r27, r17
   b0:	d9 f7       	brne	.-10     	; 0xa8 <__do_copy_data+0x10>
   b2:	02 d0       	rcall	.+4      	; 0xb8 <main>
-  b4:	e0 c0       	rjmp	.+448    	; 0x276 <_exit>
+  b4:	02 c0       	rjmp	.+4      	; 0xba <_exit>
 
 000000b6 <__bad_interrupt>:
   b6:	a4 cf       	rjmp	.-184    	; 0x0 <__vectors>
 
 000000b8 <main>:
-#include "MCAL/UART/UART.h"
+#include "MCAL/EXTI/EXTI.h"
 
 int main(void)
 {
-	UART0_Init();
-  b8:	04 d0       	rcall	.+8      	; 0xc2 <UART0_Init>
-	UART0_TransmitString("Gamal");
-  ba:	8b e0       	ldi	r24, 0x0B	; 11
-  bc:	91 e0       	ldi	r25, 0x01	; 1
-  be:	a4 d0       	rcall	.+328    	; 0x208 <UART0_TransmitString>
-  c0:	ff cf       	rjmp	.-2      	; 0xc0 <main+0x8>
+  b8:	ff cf       	rjmp	.-2      	; 0xb8 <main>
 
-000000c2 <UART0_Init>:
-}
+000000ba <_exit>:
+  ba:	f8 94       	cli
 
-void UART1_Transmit(u_int8 Data)
-{
-	while(ReadBit(UCSR1A_Register, UDRE) == 0);
-	UDR1_Register = Data;
-  c2:	a5 e9       	ldi	r26, 0x95	; 149
-  c4:	b0 e0       	ldi	r27, 0x00	; 0
-  c6:	2c 91       	ld	r18, X
-  c8:	e0 e0       	ldi	r30, 0x00	; 0
-  ca:	f1 e0       	ldi	r31, 0x01	; 1
-  cc:	90 81       	ld	r25, Z
-  ce:	30 e4       	ldi	r19, 0x40	; 64
-  d0:	93 9f       	mul	r25, r19
-  d2:	c0 01       	movw	r24, r0
-  d4:	11 24       	eor	r1, r1
-  d6:	82 2b       	or	r24, r18
-  d8:	8c 93       	st	X, r24
-  da:	2c 91       	ld	r18, X
-  dc:	91 81       	ldd	r25, Z+1	; 0x01
-  de:	30 e1       	ldi	r19, 0x10	; 16
-  e0:	93 9f       	mul	r25, r19
-  e2:	c0 01       	movw	r24, r0
-  e4:	11 24       	eor	r1, r1
-  e6:	82 2b       	or	r24, r18
-  e8:	8c 93       	st	X, r24
-  ea:	2c 91       	ld	r18, X
-  ec:	92 81       	ldd	r25, Z+2	; 0x02
-  ee:	89 2f       	mov	r24, r25
-  f0:	90 e0       	ldi	r25, 0x00	; 0
-  f2:	88 0f       	add	r24, r24
-  f4:	99 1f       	adc	r25, r25
-  f6:	88 0f       	add	r24, r24
-  f8:	99 1f       	adc	r25, r25
-  fa:	88 0f       	add	r24, r24
-  fc:	99 1f       	adc	r25, r25
-  fe:	82 2b       	or	r24, r18
- 100:	8c 93       	st	X, r24
- 102:	2a b1       	in	r18, 0x0a	; 10
- 104:	94 81       	ldd	r25, Z+4	; 0x04
- 106:	89 2f       	mov	r24, r25
- 108:	90 e0       	ldi	r25, 0x00	; 0
- 10a:	88 0f       	add	r24, r24
- 10c:	99 1f       	adc	r25, r25
- 10e:	88 0f       	add	r24, r24
- 110:	99 1f       	adc	r25, r25
- 112:	88 0f       	add	r24, r24
- 114:	99 1f       	adc	r25, r25
- 116:	82 2b       	or	r24, r18
- 118:	8a b9       	out	0x0a, r24	; 10
- 11a:	2a b1       	in	r18, 0x0a	; 10
- 11c:	95 81       	ldd	r25, Z+5	; 0x05
- 11e:	30 e1       	ldi	r19, 0x10	; 16
- 120:	93 9f       	mul	r25, r19
- 122:	c0 01       	movw	r24, r0
- 124:	11 24       	eor	r1, r1
- 126:	82 2b       	or	r24, r18
- 128:	8a b9       	out	0x0a, r24	; 10
- 12a:	86 81       	ldd	r24, Z+6	; 0x06
- 12c:	88 23       	and	r24, r24
- 12e:	19 f0       	breq	.+6      	; 0x136 <UART0_Init+0x74>
- 130:	81 30       	cpi	r24, 0x01	; 1
- 132:	31 f1       	breq	.+76     	; 0x180 <UART0_Init+0xbe>
- 134:	46 c0       	rjmp	.+140    	; 0x1c2 <UART0_Init+0x100>
- 136:	8b b1       	in	r24, 0x0b	; 11
- 138:	8d 7f       	andi	r24, 0xFD	; 253
- 13a:	8b b9       	out	0x0b, r24	; 11
- 13c:	80 91 07 01 	lds	r24, 0x0107	; 0x800107 <__DATA_REGION_ORIGIN__+0x7>
- 140:	90 91 08 01 	lds	r25, 0x0108	; 0x800108 <__DATA_REGION_ORIGIN__+0x8>
- 144:	a0 91 09 01 	lds	r26, 0x0109	; 0x800109 <__DATA_REGION_ORIGIN__+0x9>
- 148:	b0 91 0a 01 	lds	r27, 0x010A	; 0x80010a <__DATA_REGION_ORIGIN__+0xa>
- 14c:	88 0f       	add	r24, r24
- 14e:	99 1f       	adc	r25, r25
- 150:	aa 1f       	adc	r26, r26
- 152:	bb 1f       	adc	r27, r27
- 154:	88 0f       	add	r24, r24
- 156:	99 1f       	adc	r25, r25
- 158:	aa 1f       	adc	r26, r26
- 15a:	bb 1f       	adc	r27, r27
- 15c:	9c 01       	movw	r18, r24
- 15e:	ad 01       	movw	r20, r26
- 160:	22 0f       	add	r18, r18
- 162:	33 1f       	adc	r19, r19
- 164:	44 1f       	adc	r20, r20
- 166:	55 1f       	adc	r21, r21
- 168:	22 0f       	add	r18, r18
- 16a:	33 1f       	adc	r19, r19
- 16c:	44 1f       	adc	r20, r20
- 16e:	55 1f       	adc	r21, r21
- 170:	60 e0       	ldi	r22, 0x00	; 0
- 172:	74 e2       	ldi	r23, 0x24	; 36
- 174:	84 ef       	ldi	r24, 0xF4	; 244
- 176:	90 e0       	ldi	r25, 0x00	; 0
- 178:	5c d0       	rcall	.+184    	; 0x232 <__udivmodsi4>
- 17a:	21 50       	subi	r18, 0x01	; 1
- 17c:	31 09       	sbc	r19, r1
- 17e:	23 c0       	rjmp	.+70     	; 0x1c6 <UART0_Init+0x104>
- 180:	8b b1       	in	r24, 0x0b	; 11
- 182:	82 60       	ori	r24, 0x02	; 2
- 184:	8b b9       	out	0x0b, r24	; 11
- 186:	80 91 07 01 	lds	r24, 0x0107	; 0x800107 <__DATA_REGION_ORIGIN__+0x7>
- 18a:	90 91 08 01 	lds	r25, 0x0108	; 0x800108 <__DATA_REGION_ORIGIN__+0x8>
- 18e:	a0 91 09 01 	lds	r26, 0x0109	; 0x800109 <__DATA_REGION_ORIGIN__+0x9>
- 192:	b0 91 0a 01 	lds	r27, 0x010A	; 0x80010a <__DATA_REGION_ORIGIN__+0xa>
- 196:	88 0f       	add	r24, r24
- 198:	99 1f       	adc	r25, r25
- 19a:	aa 1f       	adc	r26, r26
- 19c:	bb 1f       	adc	r27, r27
- 19e:	88 0f       	add	r24, r24
- 1a0:	99 1f       	adc	r25, r25
- 1a2:	aa 1f       	adc	r26, r26
- 1a4:	bb 1f       	adc	r27, r27
- 1a6:	9c 01       	movw	r18, r24
- 1a8:	ad 01       	movw	r20, r26
- 1aa:	22 0f       	add	r18, r18
- 1ac:	33 1f       	adc	r19, r19
- 1ae:	44 1f       	adc	r20, r20
- 1b0:	55 1f       	adc	r21, r21
- 1b2:	60 e0       	ldi	r22, 0x00	; 0
- 1b4:	74 e2       	ldi	r23, 0x24	; 36
- 1b6:	84 ef       	ldi	r24, 0xF4	; 244
- 1b8:	90 e0       	ldi	r25, 0x00	; 0
- 1ba:	3b d0       	rcall	.+118    	; 0x232 <__udivmodsi4>
- 1bc:	21 50       	subi	r18, 0x01	; 1
- 1be:	31 09       	sbc	r19, r1
- 1c0:	02 c0       	rjmp	.+4      	; 0x1c6 <UART0_Init+0x104>
- 1c2:	20 e0       	ldi	r18, 0x00	; 0
- 1c4:	30 e0       	ldi	r19, 0x00	; 0
- 1c6:	30 93 90 00 	sts	0x0090, r19	; 0x800090 <__TEXT_REGION_LENGTH__+0x7e0090>
- 1ca:	29 b9       	out	0x09, r18	; 9
- 1cc:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <__DATA_REGION_ORIGIN__+0x3>
- 1d0:	94 30       	cpi	r25, 0x04	; 4
- 1d2:	61 f4       	brne	.+24     	; 0x1ec <UART0_Init+0x12a>
- 1d4:	e5 e9       	ldi	r30, 0x95	; 149
- 1d6:	f0 e0       	ldi	r31, 0x00	; 0
- 1d8:	80 81       	ld	r24, Z
- 1da:	82 60       	ori	r24, 0x02	; 2
- 1dc:	80 83       	st	Z, r24
- 1de:	80 81       	ld	r24, Z
- 1e0:	84 60       	ori	r24, 0x04	; 4
- 1e2:	80 83       	st	Z, r24
- 1e4:	8a b1       	in	r24, 0x0a	; 10
- 1e6:	84 60       	ori	r24, 0x04	; 4
- 1e8:	8a b9       	out	0x0a, r24	; 10
- 1ea:	08 95       	ret
- 1ec:	e5 e9       	ldi	r30, 0x95	; 149
- 1ee:	f0 e0       	ldi	r31, 0x00	; 0
- 1f0:	20 81       	ld	r18, Z
- 1f2:	89 2f       	mov	r24, r25
- 1f4:	90 e0       	ldi	r25, 0x00	; 0
- 1f6:	88 0f       	add	r24, r24
- 1f8:	99 1f       	adc	r25, r25
- 1fa:	82 2b       	or	r24, r18
- 1fc:	80 83       	st	Z, r24
- 1fe:	08 95       	ret
-
-00000200 <UART0_Transmit>:
- 200:	5d 9b       	sbis	0x0b, 5	; 11
- 202:	fe cf       	rjmp	.-4      	; 0x200 <UART0_Transmit>
- 204:	8c b9       	out	0x0c, r24	; 12
- 206:	08 95       	ret
-
-00000208 <UART0_TransmitString>:
-}
-
-void UART0_TransmitString(u_int8 *String)
-{
- 208:	cf 93       	push	r28
- 20a:	df 93       	push	r29
- 20c:	ec 01       	movw	r28, r24
-	while(*String != '\0')
- 20e:	0b c0       	rjmp	.+22     	; 0x226 <UART0_TransmitString+0x1e>
-	{
-		UART0_Transmit(*String);
- 210:	f7 df       	rcall	.-18     	; 0x200 <UART0_Transmit>
-		String++;
- 212:	21 96       	adiw	r28, 0x01	; 1
-	#else
-		//round up by default
-		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
-	#endif
-
-	__builtin_avr_delay_cycles(__ticks_dc);
- 214:	2f ef       	ldi	r18, 0xFF	; 255
- 216:	80 e7       	ldi	r24, 0x70	; 112
- 218:	92 e0       	ldi	r25, 0x02	; 2
- 21a:	21 50       	subi	r18, 0x01	; 1
- 21c:	80 40       	sbci	r24, 0x00	; 0
- 21e:	90 40       	sbci	r25, 0x00	; 0
- 220:	e1 f7       	brne	.-8      	; 0x21a <UART0_TransmitString+0x12>
- 222:	00 c0       	rjmp	.+0      	; 0x224 <UART0_TransmitString+0x1c>
- 224:	00 00       	nop
-	UDR1_Register = Data;
-}
-
-void UART0_TransmitString(u_int8 *String)
-{
-	while(*String != '\0')
- 226:	88 81       	ld	r24, Y
- 228:	81 11       	cpse	r24, r1
- 22a:	f2 cf       	rjmp	.-28     	; 0x210 <UART0_TransmitString+0x8>
-	{
-		UART0_Transmit(*String);
-		String++;
-		_delay_ms(50);
-	}
-}
- 22c:	df 91       	pop	r29
- 22e:	cf 91       	pop	r28
- 230:	08 95       	ret
-
-00000232 <__udivmodsi4>:
- 232:	a1 e2       	ldi	r26, 0x21	; 33
- 234:	1a 2e       	mov	r1, r26
- 236:	aa 1b       	sub	r26, r26
- 238:	bb 1b       	sub	r27, r27
- 23a:	fd 01       	movw	r30, r26
- 23c:	0d c0       	rjmp	.+26     	; 0x258 <__udivmodsi4_ep>
-
-0000023e <__udivmodsi4_loop>:
- 23e:	aa 1f       	adc	r26, r26
- 240:	bb 1f       	adc	r27, r27
- 242:	ee 1f       	adc	r30, r30
- 244:	ff 1f       	adc	r31, r31
- 246:	a2 17       	cp	r26, r18
- 248:	b3 07       	cpc	r27, r19
- 24a:	e4 07       	cpc	r30, r20
- 24c:	f5 07       	cpc	r31, r21
- 24e:	20 f0       	brcs	.+8      	; 0x258 <__udivmodsi4_ep>
- 250:	a2 1b       	sub	r26, r18
- 252:	b3 0b       	sbc	r27, r19
- 254:	e4 0b       	sbc	r30, r20
- 256:	f5 0b       	sbc	r31, r21
-
-00000258 <__udivmodsi4_ep>:
- 258:	66 1f       	adc	r22, r22
- 25a:	77 1f       	adc	r23, r23
- 25c:	88 1f       	adc	r24, r24
- 25e:	99 1f       	adc	r25, r25
- 260:	1a 94       	dec	r1
- 262:	69 f7       	brne	.-38     	; 0x23e <__udivmodsi4_loop>
- 264:	60 95       	com	r22
- 266:	70 95       	com	r23
- 268:	80 95       	com	r24
- 26a:	90 95       	com	r25
- 26c:	9b 01       	movw	r18, r22
- 26e:	ac 01       	movw	r20, r24
- 270:	bd 01       	movw	r22, r26
- 272:	cf 01       	movw	r24, r30
- 274:	08 95       	ret
-
-00000276 <_exit>:
- 276:	f8 94       	cli
-
-00000278 <__stop_program>:
- 278:	ff cf       	rjmp	.-2      	; 0x278 <__stop_program>
+000000bc <__stop_program>:
+  bc:	ff cf       	rjmp	.-2      	; 0xbc <__stop_program>

@@ -36,6 +36,8 @@ SUBDIRS :=  \
 ../LIB \
 ../MCAL \
 ../MCAL/DIO \
+../MCAL/GIE \
+../MCAL/EXTI \
 ../MCAL/TWI \
 ../MCAL/SPI \
 ../MCAL/UART
@@ -46,6 +48,8 @@ C_SRCS +=  \
 ../main.c \
 ../MCAL/DIO/DIO.c \
 ../MCAL/DIO/DIO_Cfg.c \
+../MCAL/EXTI/EXTI.c \
+../MCAL/GIE/GIE.c \
 ../MCAL/SPI/SPI.c \
 ../MCAL/SPI/SPI_Cfg.c \
 ../MCAL/TWI/TWI.c \
@@ -63,6 +67,8 @@ OBJS +=  \
 main.o \
 MCAL/DIO/DIO.o \
 MCAL/DIO/DIO_Cfg.o \
+MCAL/EXTI/EXTI.o \
+MCAL/GIE/GIE.o \
 MCAL/SPI/SPI.o \
 MCAL/SPI/SPI_Cfg.o \
 MCAL/TWI/TWI.o \
@@ -73,6 +79,8 @@ OBJS_AS_ARGS +=  \
 main.o \
 MCAL/DIO/DIO.o \
 MCAL/DIO/DIO_Cfg.o \
+MCAL/EXTI/EXTI.o \
+MCAL/GIE/GIE.o \
 MCAL/SPI/SPI.o \
 MCAL/SPI/SPI_Cfg.o \
 MCAL/TWI/TWI.o \
@@ -83,6 +91,8 @@ C_DEPS +=  \
 main.d \
 MCAL/DIO/DIO.d \
 MCAL/DIO/DIO_Cfg.d \
+MCAL/EXTI/EXTI.d \
+MCAL/GIE/GIE.d \
 MCAL/SPI/SPI.d \
 MCAL/SPI/SPI_Cfg.d \
 MCAL/TWI/TWI.d \
@@ -93,6 +103,8 @@ C_DEPS_AS_ARGS +=  \
 main.d \
 MCAL/DIO/DIO.d \
 MCAL/DIO/DIO_Cfg.d \
+MCAL/EXTI/EXTI.d \
+MCAL/GIE/GIE.d \
 MCAL/SPI/SPI.d \
 MCAL/SPI/SPI_Cfg.d \
 MCAL/TWI/TWI.d \
@@ -128,6 +140,20 @@ MCAL/DIO/DIO.o: ../MCAL/DIO/DIO.c
 	
 
 MCAL/DIO/DIO_Cfg.o: ../MCAL/DIO/DIO_Cfg.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega128a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega128a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+MCAL/EXTI/EXTI.o: ../MCAL/EXTI/EXTI.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega128a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega128a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+MCAL/GIE/GIE.o: ../MCAL/GIE/GIE.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega128a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega128a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

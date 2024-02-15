@@ -152,6 +152,27 @@
     <Compile Include="MCAL\DIO\DIO_Types.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="MCAL\EXTI\EXTI.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\EXTI\EXTI.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\EXTI\EXTI_Registers.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\EXTI\EXTI_Types.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\GIE\GIE.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\GIE\GIE.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\GIE\GIE_Registers.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="MCAL\SPI\SPI.c">
       <SubType>compile</SubType>
     </Compile>
@@ -208,6 +229,8 @@
     <Folder Include="LIB" />
     <Folder Include="MCAL" />
     <Folder Include="MCAL\DIO" />
+    <Folder Include="MCAL\GIE" />
+    <Folder Include="MCAL\EXTI" />
     <Folder Include="MCAL\TWI" />
     <Folder Include="MCAL\SPI" />
     <Folder Include="MCAL\UART" />
