@@ -15,6 +15,8 @@ void UART1_Transmit(u_int8 Data);
 void UART0_TransmitString(u_int8 * String);
 void UART1_TransmitString(u_int8 * String);
 
+void UART0_SendAT(u_int8* String);
+
 u_int8 UART0_Receive(void);
 u_int8 UART1_Receive(void);
 

@@ -1,14 +1,9 @@
-#include "HAL/LCD/LCD.h"
-#include "LIB/Clock.h"
+#include "HAL/ESP01/ESP01.h"
 
-unsigned char char1[] = {0b00000000, 0b00000000, 0b00000111, 0b00000001, 0b00011111, 0b00000100, 0b00000000, 0b00000000};
-
-int main(void)
+int main()
 {
-	
 	while(1)
 	{
 		
 	}
 }
-

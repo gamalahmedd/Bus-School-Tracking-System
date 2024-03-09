@@ -8,7 +8,9 @@ void UART0_Init(void)
 	UCSR0C_Register |= (UART0_Cfg.Parity_Mode << UPM0);
 	UCSR0C_Register |= (UART0_Cfg.Stop_Bit_Mode << USBS);
 	UCSR0B_Register |= (UART0_Cfg.TX_Mode << TXEN);
+	UCSR0B_Register |= (UART0_Cfg.TX_Interrupt_State << TXCIE);
 	UCSR0B_Register |= (UART0_Cfg.RX_Mode << RXEN);
+	UCSR0B_Register |= (UART0_Cfg.RX_Interrupt_State << RXCIE);
 	u_int16 UBRR0 = 0;
 	switch(UART0_Cfg.DoubleSpeed_Mode)
 	{
@@ -40,8 +42,10 @@ void UART1_Init(void)
 	UCSR1C_Register |= (UART1_Cfg.Operation_Mode << UMSEL);
 	UCSR1C_Register |= (UART1_Cfg.Parity_Mode << UPM0);
 	UCSR1C_Register |= (UART1_Cfg.Stop_Bit_Mode << USBS);
-	UCSR1B_Register |= (UART0_Cfg.TX_Mode << TXEN);
-	UCSR1B_Register |= (UART0_Cfg.RX_Mode << RXEN);
+	UCSR1B_Register |= (UART1_Cfg.TX_Mode << TXEN);
+	UCSR1B_Register |= (UART1_Cfg.TX_Interrupt_State << TXCIE);
+	UCSR1B_Register |= (UART1_Cfg.RX_Mode << RXEN);
+	UCSR1B_Register |= (UART1_Cfg.RX_Interrupt_State << RXCIE);
 	u_int16 UBRR1 = 0;
 	switch(UART1_Cfg.DoubleSpeed_Mode)
 	{
@@ -82,21 +86,23 @@ void UART1_Transmit(u_int8 Data)
 
 void UART0_TransmitString(u_int8 *String)
 {
-	while(*String != '\0')
+	u_int8 j = 0;
+	while(String[j] != 0)
 	{
-		UART0_Transmit(*String);
-		String++;
-		_delay_ms(50);
+		UART0_Transmit(String[j]);
+		j++;
+		_delay_ms(80);
 	}
 }
 
 void UART1_TransmitString(u_int8 * String)
 {
-	while(String != 0)
+	u_int8 j = 0;
+	while(String[j] != 0)
 	{
-		UART1_Transmit(*String);
-		String++;
-		_delay_ms(50);
+		UART1_Transmit(String[j]);
+		j++;
+		_delay_ms(80);
 	}
 }
 

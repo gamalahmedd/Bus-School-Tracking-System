@@ -2,9 +2,13 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
+HAL\ESP01\ESP01.c
+
 HAL\LCD\LCD.c
 
 HAL\LCD\LCD_Config.c
+
+LIB\String_Find.c
 
 main.c
 

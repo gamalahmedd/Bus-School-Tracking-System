@@ -1,5 +1,6 @@
 #ifndef UART_TYPES_H_
 #define UART_TYPES_H_
+
 typedef enum
 {
 	MPCM = 0,
@@ -71,9 +72,21 @@ typedef enum
 
 typedef enum
 {
+	UART_TX_Interrupt_Disable=0,
+	UART_TX_Interrupt_Enable
+}UART_TX_Interrupt_State;
+
+typedef enum
+{
 	UART_RX_Disable=0,
 	UART_RX_Enable
 }UART_RX_Mode;
+
+typedef enum
+{
+	UART_RX_Interrupt_Disable=0,
+	UART_RX_Interrupt_Enable
+}UART_RX_Interrupt_State;
 
 typedef enum
 {

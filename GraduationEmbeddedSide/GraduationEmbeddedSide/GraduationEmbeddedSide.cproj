@@ -122,6 +122,15 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="HAL\ESP01\ESP01.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\ESP01\ESP01.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\ESP01\ESP01_Types.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="HAL\LCD\LCD.c">
       <SubType>compile</SubType>
     </Compile>
@@ -144,6 +153,12 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="LIB\STD_TYPES.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="LIB\String_Find.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="LIB\String_Find.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.c">
@@ -242,6 +257,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="HAL\LCD" />
+    <Folder Include="HAL\ESP01" />
     <Folder Include="LIB" />
     <Folder Include="MCAL" />
     <Folder Include="MCAL\DIO" />
