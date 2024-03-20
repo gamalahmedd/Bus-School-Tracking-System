@@ -59,3 +59,13 @@ void SPI_Master_TransmitString(u_int8* String)
 		String++;
 	}
 }
+
+void SPI_Cannel_State(DIO_ChannelTypes ChannelID,SPI_State State)
+{
+	DIO_ConfigChannel(ChannelID,OUTPUT);
+	switch (State)
+	{
+		case SPI_Disable:DIO_WriteChannel(ChannelID,STD_HIGH);break;
+		case SPI_Enable:DIO_WriteChannel(ChannelID,STD_LOW);break;
+	}
+}

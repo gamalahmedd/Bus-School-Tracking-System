@@ -24,7 +24,13 @@ main.d main.o: .././main.c .././HAL/ESP01/ESP01.h \
  .././HAL/ESP01/../../MCAL/DIO/DIO_Registers.h \
  .././HAL/ESP01/../../MCAL/DIO/../../LIB/STD_TYPES.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\string.h \
- c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stddef.h
+ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stddef.h \
+ .././HAL/MFRC/mfrc522.h .././HAL/MFRC/mfrc522_cmd.h \
+ .././HAL/MFRC/mfrc522_reg.h .././HAL/MFRC/../../LIB/BITMATH.h \
+ .././MCAL/UART/UART.h .././MCAL/SPI/SPI.h .././MCAL/SPI/SPI_Registers.h \
+ .././MCAL/SPI/SPI_Cfg.h .././MCAL/SPI/SPI_Types.h \
+ .././MCAL/SPI/../../LIB/BITMATH.h .././MCAL/SPI/../../LIB/STD_TYPES.h \
+ .././MCAL/SPI/../../MCAL/DIO/DIO.h
 
 .././HAL/ESP01/ESP01.h:
 
@@ -83,3 +89,27 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\string.h:
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stddef.h:
+
+.././HAL/MFRC/mfrc522.h:
+
+.././HAL/MFRC/mfrc522_cmd.h:
+
+.././HAL/MFRC/mfrc522_reg.h:
+
+.././HAL/MFRC/../../LIB/BITMATH.h:
+
+.././MCAL/UART/UART.h:
+
+.././MCAL/SPI/SPI.h:
+
+.././MCAL/SPI/SPI_Registers.h:
+
+.././MCAL/SPI/SPI_Cfg.h:
+
+.././MCAL/SPI/SPI_Types.h:
+
+.././MCAL/SPI/../../LIB/BITMATH.h:
+
+.././MCAL/SPI/../../LIB/STD_TYPES.h:
+
+.././MCAL/SPI/../../MCAL/DIO/DIO.h:
