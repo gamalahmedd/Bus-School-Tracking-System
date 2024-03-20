@@ -106,6 +106,13 @@ void UART1_TransmitString(u_int8 * String)
 	}
 }
 
+void UART1_sendATCommand(u_int8* String)
+{
+	UART1_TransmitString(String);
+	UART1_Transmit(CR);
+	UART1_Transmit(LF);
+}
+
 u_int8 UART0_Receive(void)
 {
 	u_int8 data = 0;

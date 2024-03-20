@@ -14,6 +14,10 @@ u_int8 ESP01_Check_Wifi_Connection();
 u_int8 ESP01_ResponseSuccess();
 void ESP01_Reset_Buffer();
 void ESP01_Reset_Wifi();
+void ESP01_GetIP_MAC_Addresses();
+void ESP01_Create_TCPServer(u_int8* portNumber);
+void ESP01_Check_Request();
+u_int16 get_size_Data();
 
 
 #endif

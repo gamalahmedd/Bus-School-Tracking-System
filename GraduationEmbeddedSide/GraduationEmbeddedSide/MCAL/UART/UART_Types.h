@@ -1,6 +1,9 @@
 #ifndef UART_TYPES_H_
 #define UART_TYPES_H_
 
+#define CR 0x0D
+#define LF 0x0A
+
 typedef enum
 {
 	MPCM = 0,

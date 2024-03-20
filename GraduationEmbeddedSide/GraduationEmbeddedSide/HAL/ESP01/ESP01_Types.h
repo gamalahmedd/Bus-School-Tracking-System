@@ -23,5 +23,10 @@ u_int8 APIP[20];
 u_int8 APMAC[20];
 u_int8 STAIP[20];
 u_int8 STAMAC[20];
+u_int8 connection_id[5];
+u_int16 size_data;
+u_int8 size_data_text[10];
 
+u_int8* counter_text[6];
+u_int16 counter_value;
 #endif

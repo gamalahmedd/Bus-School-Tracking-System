@@ -7,27 +7,27 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, DATA
   1 .text         00000404  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          00000258  00800100  00800100  00000478  2**0
+  2 .bss          00000277  00800100  00800100  00000478  2**0
                   ALLOC
   3 .comment      00000030  00000000  00000000  00000478  2**0
                   CONTENTS, READONLY
   4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000004a8  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 000000e0  00000000  00000000  000004e8  2**0
+  5 .debug_aranges 00000100  00000000  00000000  000004e8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00001989  00000000  00000000  000005c8  2**0
+  6 .debug_info   00001f8c  00000000  00000000  000005e8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000a4f  00000000  00000000  00001f51  2**0
+  7 .debug_abbrev 00000aa2  00000000  00000000  00002574  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000a59  00000000  00000000  000029a0  2**0
+  8 .debug_line   00000b85  00000000  00000000  00003016  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000400  00000000  00000000  000033fc  2**2
+  9 .debug_frame  00000470  00000000  00000000  00003b9c  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000b8f  00000000  00000000  000037fc  2**0
+ 10 .debug_str    00000c7f  00000000  00000000  0000400c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000dbf  00000000  00000000  0000438b  2**0
+ 11 .debug_loc    0000103b  00000000  00000000  00004c8b  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000000b0  00000000  00000000  0000514a  2**0
+ 12 .debug_ranges 000000d0  00000000  00000000  00005cc6  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -137,7 +137,7 @@ Disassembly of section .text:
   ba:	1d 92       	st	X+, r1
 
 000000bc <.do_clear_bss_start>:
-  bc:	a8 35       	cpi	r26, 0x58	; 88
+  bc:	a7 37       	cpi	r26, 0x77	; 119
   be:	b2 07       	cpc	r27, r18
   c0:	e1 f7       	brne	.-8      	; 0xba <.do_clear_bss_loop>
   c2:	45 d0       	rcall	.+138    	; 0x14e <main>
@@ -147,7 +147,7 @@ Disassembly of section .text:
   c6:	9c cf       	rjmp	.-200    	; 0x0 <__vectors>
 
 000000c8 <__vector_30>:
-	DIO_WriteChannel(DIO_ChannelD0, STD_LOW);
+	return size;
 }
 
 
@@ -168,7 +168,7 @@ ISR(USART1_RX_vect)
   e0:	ff 93       	push	r31
 	temp = UDR1_Register;
   e2:	80 91 9c 00 	lds	r24, 0x009C	; 0x80009c <__TEXT_REGION_LENGTH__+0x7e009c>
-  e6:	80 93 2d 03 	sts	0x032D, r24	; 0x80032d <temp>
+  e6:	80 93 45 03 	sts	0x0345, r24	; 0x800345 <temp>
 	switch(temp)
   ea:	8a 30       	cpi	r24, 0x0A	; 10
   ec:	19 f0       	breq	.+6      	; 0xf4 <__vector_30+0x2c>
@@ -178,39 +178,39 @@ ISR(USART1_RX_vect)
 	{
 		case LF:
 			if(data_len > 1)
-  f4:	80 91 56 03 	lds	r24, 0x0356	; 0x800356 <data_len>
-  f8:	90 91 57 03 	lds	r25, 0x0357	; 0x800357 <data_len+0x1>
+  f4:	80 91 6e 03 	lds	r24, 0x036E	; 0x80036e <data_len>
+  f8:	90 91 6f 03 	lds	r25, 0x036F	; 0x80036f <data_len+0x1>
   fc:	02 97       	sbiw	r24, 0x02	; 2
   fe:	d0 f0       	brcs	.+52     	; 0x134 <__vector_30+0x6c>
 			{
 				data_ready = 1;
  100:	81 e0       	ldi	r24, 0x01	; 1
- 102:	80 93 10 01 	sts	0x0110, r24	; 0x800110 <data_ready>
+ 102:	80 93 12 01 	sts	0x0112, r24	; 0x800112 <data_ready>
  106:	16 c0       	rjmp	.+44     	; 0x134 <__vector_30+0x6c>
 			}
 			break;
 		case CR:
 			rx_buff[data_len] = 0;
- 108:	e0 91 56 03 	lds	r30, 0x0356	; 0x800356 <data_len>
- 10c:	f0 91 57 03 	lds	r31, 0x0357	; 0x800357 <data_len+0x1>
- 110:	eb 5d       	subi	r30, 0xDB	; 219
+ 108:	e0 91 6e 03 	lds	r30, 0x036E	; 0x80036e <data_len>
+ 10c:	f0 91 6f 03 	lds	r31, 0x036F	; 0x80036f <data_len+0x1>
+ 110:	e9 5d       	subi	r30, 0xD9	; 217
  112:	fe 4f       	sbci	r31, 0xFE	; 254
  114:	10 82       	st	Z, r1
 			break;
  116:	0e c0       	rjmp	.+28     	; 0x134 <__vector_30+0x6c>
 		default:
 			rx_buff[data_len] = temp;
- 118:	20 91 56 03 	lds	r18, 0x0356	; 0x800356 <data_len>
- 11c:	30 91 57 03 	lds	r19, 0x0357	; 0x800357 <data_len+0x1>
+ 118:	20 91 6e 03 	lds	r18, 0x036E	; 0x80036e <data_len>
+ 11c:	30 91 6f 03 	lds	r19, 0x036F	; 0x80036f <data_len+0x1>
  120:	f9 01       	movw	r30, r18
- 122:	eb 5d       	subi	r30, 0xDB	; 219
+ 122:	e9 5d       	subi	r30, 0xD9	; 217
  124:	fe 4f       	sbci	r31, 0xFE	; 254
  126:	80 83       	st	Z, r24
 			data_len++;
  128:	2f 5f       	subi	r18, 0xFF	; 255
  12a:	3f 4f       	sbci	r19, 0xFF	; 255
- 12c:	30 93 57 03 	sts	0x0357, r19	; 0x800357 <data_len+0x1>
- 130:	20 93 56 03 	sts	0x0356, r18	; 0x800356 <data_len>
+ 12c:	30 93 6f 03 	sts	0x036F, r19	; 0x80036f <data_len+0x1>
+ 130:	20 93 6e 03 	sts	0x036E, r18	; 0x80036e <data_len>
 			break;
 	}
  134:	ff 91       	pop	r31

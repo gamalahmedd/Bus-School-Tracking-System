@@ -16,18 +16,31 @@ c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/..
                               LIB/String_Find.o (strncpy)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(strstr.o)
                               LIB/String_Find.o (strstr)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(itoa.o)
+                              HAL/ESP01/ESP01.o (itoa)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(itoa_ncheck.o)
+                              c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(itoa.o) (__itoa_ncheck)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(utoa_ncheck.o)
+                              c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(itoa_ncheck.o) (__utoa_common)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(strrev.o)
+                              c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(utoa_ncheck.o) (strrev)
 
 Allocating common symbols
 Common symbol       size              file
 
+counter_value       0x2               HAL/ESP01/ESP01.o
 data_ready          0x1               HAL/ESP01/ESP01.o
 APMAC               0x14              HAL/ESP01/ESP01.o
 rx_buff             0x1f4             HAL/ESP01/ESP01.o
 STAIP               0x14              HAL/ESP01/ESP01.o
+counter_text        0xc               HAL/ESP01/ESP01.o
+size_data_text      0xa               HAL/ESP01/ESP01.o
 temp                0x1               HAL/ESP01/ESP01.o
 STAMAC              0x14              HAL/ESP01/ESP01.o
 APIP                0x14              HAL/ESP01/ESP01.o
 data_len            0x2               HAL/ESP01/ESP01.o
+size_data           0x2               HAL/ESP01/ESP01.o
+connection_id       0x5               HAL/ESP01/ESP01.o
 
 Discarded input sections
 
@@ -39,17 +52,29 @@ Discarded input sections
  .text.ESP01_Reset_Buffer
                 0x00000000       0x22 HAL/ESP01/ESP01.o
  .rodata.str1.1
-                0x00000000       0xe2 HAL/ESP01/ESP01.o
+                0x00000000      0x192 HAL/ESP01/ESP01.o
  .text.ESP01_Check_Wifi_Connection
-                0x00000000       0x90 HAL/ESP01/ESP01.o
+                0x00000000       0x6c HAL/ESP01/ESP01.o
  .text.ESP01_Connect_Wifi
-                0x00000000       0xae HAL/ESP01/ESP01.o
+                0x00000000       0x8a HAL/ESP01/ESP01.o
  .text.ESP01_ResponseSuccess
                 0x00000000       0x66 HAL/ESP01/ESP01.o
  .text.ESP01_Reset_Wifi
                 0x00000000       0x24 HAL/ESP01/ESP01.o
  .text.ESP01_Init
-                0x00000000      0x1c2 HAL/ESP01/ESP01.o
+                0x00000000      0x11a HAL/ESP01/ESP01.o
+ .text.ESP01_GetIP_MAC_Addresses
+                0x00000000      0x12c HAL/ESP01/ESP01.o
+ .text.ESP01_Create_TCPServer
+                0x00000000       0x68 HAL/ESP01/ESP01.o
+ .text.get_size_Data
+                0x00000000       0x40 HAL/ESP01/ESP01.o
+ .text.ESP01_Check_Request
+                0x00000000      0x114 HAL/ESP01/ESP01.o
+ .data.webpage_request2
+                0x00000000       0x14 HAL/ESP01/ESP01.o
+ .data.webpage_request1
+                0x00000000       0x49 HAL/ESP01/ESP01.o
  .text          0x00000000        0x0 HAL/LCD/LCD.o
  .data          0x00000000        0x0 HAL/LCD/LCD.o
  .bss           0x00000000        0x0 HAL/LCD/LCD.o
@@ -289,20 +314,22 @@ Discarded input sections
                 0x00000000       0x38 MCAL/UART/UART.o
  .text.UART1_TransmitString
                 0x00000000       0x38 MCAL/UART/UART.o
+ .text.UART1_sendATCommand
+                0x00000000       0x12 MCAL/UART/UART.o
  .text.UART0_Receive
                 0x00000000        0x8 MCAL/UART/UART.o
  .text.UART1_Receive
                 0x00000000        0xe MCAL/UART/UART.o
- .debug_info    0x00000000      0x5ff MCAL/UART/UART.o
- .debug_abbrev  0x00000000      0x1b0 MCAL/UART/UART.o
- .debug_loc     0x00000000      0x26a MCAL/UART/UART.o
+ .debug_info    0x00000000      0x665 MCAL/UART/UART.o
+ .debug_abbrev  0x00000000      0x1d4 MCAL/UART/UART.o
+ .debug_loc     0x00000000      0x290 MCAL/UART/UART.o
  .debug_aranges
-                0x00000000       0x58 MCAL/UART/UART.o
- .debug_ranges  0x00000000       0x48 MCAL/UART/UART.o
- .debug_line    0x00000000      0x375 MCAL/UART/UART.o
- .debug_str     0x00000000      0x741 MCAL/UART/UART.o
+                0x00000000       0x60 MCAL/UART/UART.o
+ .debug_ranges  0x00000000       0x50 MCAL/UART/UART.o
+ .debug_line    0x00000000      0x398 MCAL/UART/UART.o
+ .debug_str     0x00000000      0x755 MCAL/UART/UART.o
  .comment       0x00000000       0x31 MCAL/UART/UART.o
- .debug_frame   0x00000000       0xb4 MCAL/UART/UART.o
+ .debug_frame   0x00000000       0xc4 MCAL/UART/UART.o
  .text          0x00000000        0x0 MCAL/UART/UART_Cfg.o
  .data          0x00000000        0x0 MCAL/UART/UART_Cfg.o
  .bss           0x00000000        0x0 MCAL/UART/UART_Cfg.o
@@ -412,6 +439,26 @@ Discarded input sections
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(strstr.o)
  .text.avr-libc
                 0x00000000       0x34 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(strstr.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(itoa.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(itoa.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(itoa.o)
+ .text.avr-libc
+                0x00000000       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(itoa.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(itoa_ncheck.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(itoa_ncheck.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(itoa_ncheck.o)
+ .text.avr-libc
+                0x00000000       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(itoa_ncheck.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(utoa_ncheck.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(utoa_ncheck.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(utoa_ncheck.o)
+ .text.avr-libc
+                0x00000000       0x34 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(utoa_ncheck.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(strrev.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(strrev.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(strrev.o)
+ .text.avr-libc
+                0x00000000       0x20 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(strrev.o)
 
 Memory Configuration
 
@@ -707,7 +754,7 @@ END GROUP
                 0x00800100                _edata = .
                 0x00800100                PROVIDE (__data_end, .)
 
-.bss            0x00800100      0x258
+.bss            0x00800100      0x277
                 0x00800100                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
@@ -736,24 +783,29 @@ END GROUP
                 0x0080010e        0x2 MCAL/EXTI/EXTI.o
                 0x0080010e                EXT_INTERRUPT0_FUNCTION_PTR
  *(COMMON)
- COMMON         0x00800110      0x248 HAL/ESP01/ESP01.o
-                0x00800110                data_ready
-                0x00800111                APMAC
-                0x00800125                rx_buff
-                0x00800319                STAIP
-                0x0080032d                temp
-                0x0080032e                STAMAC
-                0x00800342                APIP
-                0x00800356                data_len
-                0x00800358                PROVIDE (__bss_end, .)
+ COMMON         0x00800110      0x267 HAL/ESP01/ESP01.o
+                0x00800110                counter_value
+                0x00800112                data_ready
+                0x00800113                APMAC
+                0x00800127                rx_buff
+                0x0080031b                STAIP
+                0x0080032f                counter_text
+                0x0080033b                size_data_text
+                0x00800345                temp
+                0x00800346                STAMAC
+                0x0080035a                APIP
+                0x0080036e                data_len
+                0x00800370                size_data
+                0x00800372                connection_id
+                0x00800377                PROVIDE (__bss_end, .)
                 0x00000404                __data_load_start = LOADADDR (.data)
                 0x00000404                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800358        0x0
+.noinit         0x00800377        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00800358                _end = .
+                0x00800377                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -820,59 +872,59 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000       0xe0
+.debug_aranges  0x00000000      0x100
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x50 HAL/ESP01/ESP01.o
+                0x00000000       0x70 HAL/ESP01/ESP01.o
  .debug_aranges
-                0x00000050       0x20 main.o
+                0x00000070       0x20 main.o
  .debug_aranges
-                0x00000070       0x70 MCAL/EXTI/EXTI.o
+                0x00000090       0x70 MCAL/EXTI/EXTI.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x1989
+.debug_info     0x00000000     0x1f8c
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x780 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega128a/avr51/crtatmega128a.o
- .debug_info    0x00000780      0xda8 HAL/ESP01/ESP01.o
- .debug_info    0x00001528      0x158 main.o
- .debug_info    0x00001680      0x309 MCAL/EXTI/EXTI.o
+ .debug_info    0x00000780     0x131b HAL/ESP01/ESP01.o
+ .debug_info    0x00001a9b      0x1e8 main.o
+ .debug_info    0x00001c83      0x309 MCAL/EXTI/EXTI.o
 
-.debug_abbrev   0x00000000      0xa4f
+.debug_abbrev   0x00000000      0xaa2
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x718 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega128a/avr51/crtatmega128a.o
- .debug_abbrev  0x00000718      0x1f5 HAL/ESP01/ESP01.o
- .debug_abbrev  0x0000090d       0x80 main.o
- .debug_abbrev  0x0000098d       0xc2 MCAL/EXTI/EXTI.o
+ .debug_abbrev  0x00000718      0x23f HAL/ESP01/ESP01.o
+ .debug_abbrev  0x00000957       0x89 main.o
+ .debug_abbrev  0x000009e0       0xc2 MCAL/EXTI/EXTI.o
 
-.debug_line     0x00000000      0xa59
+.debug_line     0x00000000      0xb85
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x16a C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega128a/avr51/crtatmega128a.o
- .debug_line    0x0000016a      0x563 HAL/ESP01/ESP01.o
- .debug_line    0x000006cd       0x7f main.o
- .debug_line    0x0000074c      0x30d MCAL/EXTI/EXTI.o
+ .debug_line    0x0000016a      0x68f HAL/ESP01/ESP01.o
+ .debug_line    0x000007f9       0x7f main.o
+ .debug_line    0x00000878      0x30d MCAL/EXTI/EXTI.o
 
-.debug_frame    0x00000000      0x400
+.debug_frame    0x00000000      0x470
  *(.debug_frame)
- .debug_frame   0x00000000       0xd8 HAL/ESP01/ESP01.o
- .debug_frame   0x000000d8       0x24 main.o
- .debug_frame   0x000000fc      0x304 MCAL/EXTI/EXTI.o
+ .debug_frame   0x00000000      0x148 HAL/ESP01/ESP01.o
+ .debug_frame   0x00000148       0x24 main.o
+ .debug_frame   0x0000016c      0x304 MCAL/EXTI/EXTI.o
 
-.debug_str      0x00000000      0xb8f
+.debug_str      0x00000000      0xc7f
  *(.debug_str)
  .debug_str     0x00000000      0x27d C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega128a/avr51/crtatmega128a.o
- .debug_str     0x0000027d      0x62c HAL/ESP01/ESP01.o
-                                0x660 (size before relaxing)
- .debug_str     0x000008a9       0x11 main.o
-                                0x203 (size before relaxing)
- .debug_str     0x000008ba      0x2d5 MCAL/EXTI/EXTI.o
+ .debug_str     0x0000027d      0x71c HAL/ESP01/ESP01.o
+                                0x750 (size before relaxing)
+ .debug_str     0x00000999       0x11 main.o
+                                0x245 (size before relaxing)
+ .debug_str     0x000009aa      0x2d5 MCAL/EXTI/EXTI.o
                                 0x488 (size before relaxing)
 
-.debug_loc      0x00000000      0xdbf
+.debug_loc      0x00000000     0x103b
  *(.debug_loc)
- .debug_loc     0x00000000      0x42f HAL/ESP01/ESP01.o
- .debug_loc     0x0000042f      0x990 MCAL/EXTI/EXTI.o
+ .debug_loc     0x00000000      0x6ab HAL/ESP01/ESP01.o
+ .debug_loc     0x000006ab      0x990 MCAL/EXTI/EXTI.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -892,11 +944,11 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000       0xb0
+.debug_ranges   0x00000000       0xd0
  *(.debug_ranges)
- .debug_ranges  0x00000000       0x40 HAL/ESP01/ESP01.o
- .debug_ranges  0x00000040       0x10 main.o
- .debug_ranges  0x00000050       0x60 MCAL/EXTI/EXTI.o
+ .debug_ranges  0x00000000       0x60 HAL/ESP01/ESP01.o
+ .debug_ranges  0x00000060       0x10 main.o
+ .debug_ranges  0x00000070       0x60 MCAL/EXTI/EXTI.o
 
 .debug_macro
  *(.debug_macro)
