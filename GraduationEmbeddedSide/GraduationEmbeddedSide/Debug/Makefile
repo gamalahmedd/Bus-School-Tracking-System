@@ -35,6 +35,7 @@ LINKER_SCRIPT_DEP:=
 SUBDIRS :=  \
 ../HAL/LCD \
 ../HAL/ESP01 \
+../HAL/MFRC \
 ../LIB \
 ../MCAL \
 ../MCAL/DIO \
@@ -51,6 +52,7 @@ C_SRCS +=  \
 ../HAL/ESP01/ESP01.c \
 ../HAL/LCD/LCD.c \
 ../HAL/LCD/LCD_Config.c \
+../HAL/MFRC/mfrc522.c \
 ../LIB/String_Find.c \
 ../main.c \
 ../MCAL/DIO/DIO.c \
@@ -74,6 +76,7 @@ OBJS +=  \
 HAL/ESP01/ESP01.o \
 HAL/LCD/LCD.o \
 HAL/LCD/LCD_Config.o \
+HAL/MFRC/mfrc522.o \
 LIB/String_Find.o \
 main.o \
 MCAL/DIO/DIO.o \
@@ -90,6 +93,7 @@ OBJS_AS_ARGS +=  \
 HAL/ESP01/ESP01.o \
 HAL/LCD/LCD.o \
 HAL/LCD/LCD_Config.o \
+HAL/MFRC/mfrc522.o \
 LIB/String_Find.o \
 main.o \
 MCAL/DIO/DIO.o \
@@ -106,6 +110,7 @@ C_DEPS +=  \
 HAL/ESP01/ESP01.d \
 HAL/LCD/LCD.d \
 HAL/LCD/LCD_Config.d \
+HAL/MFRC/mfrc522.d \
 LIB/String_Find.d \
 main.d \
 MCAL/DIO/DIO.d \
@@ -122,6 +127,7 @@ C_DEPS_AS_ARGS +=  \
 HAL/ESP01/ESP01.d \
 HAL/LCD/LCD.d \
 HAL/LCD/LCD_Config.d \
+HAL/MFRC/mfrc522.d \
 LIB/String_Find.d \
 main.d \
 MCAL/DIO/DIO.d \
@@ -163,6 +169,13 @@ HAL/LCD/LCD.o: ../HAL/LCD/LCD.c
 	
 
 HAL/LCD/LCD_Config.o: ../HAL/LCD/LCD_Config.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega128a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega128a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+HAL/MFRC/mfrc522.o: ../HAL/MFRC/mfrc522.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega128a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega128a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

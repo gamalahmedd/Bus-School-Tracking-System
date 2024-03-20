@@ -146,6 +146,18 @@
     <Compile Include="HAL\LCD\LCD_Types.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="HAL\MFRC\mfrc522.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\MFRC\mfrc522.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\MFRC\mfrc522_cmd.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\MFRC\mfrc522_reg.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="LIB\BITMATH.h">
       <SubType>compile</SubType>
     </Compile>
@@ -258,6 +270,7 @@
   <ItemGroup>
     <Folder Include="HAL\LCD" />
     <Folder Include="HAL\ESP01" />
+    <Folder Include="HAL\MFRC" />
     <Folder Include="LIB" />
     <Folder Include="MCAL" />
     <Folder Include="MCAL\DIO" />

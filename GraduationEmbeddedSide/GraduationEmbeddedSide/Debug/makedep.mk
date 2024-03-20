@@ -8,6 +8,8 @@ HAL\LCD\LCD.c
 
 HAL\LCD\LCD_Config.c
 
+HAL\MFRC\mfrc522.c
+
 LIB\String_Find.c
 
 main.c

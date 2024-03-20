@@ -11,5 +11,6 @@ void SPI_Init(void);
 u_int8 SPI_Master_TransmitChar(u_int8 Data);
 u_int8 SPI_Slave_ReceiveChar(u_int8 Data);
 void SPI_Master_TransmitString(u_int8* String);
+void SPI_Cannel_State(DIO_ChannelTypes ChannelID,SPI_State State);
 
 #endif /* SPI_H_ */
