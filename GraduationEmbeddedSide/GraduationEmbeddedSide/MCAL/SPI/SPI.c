@@ -37,7 +37,6 @@ void SPI_Init(void)
 
 u_int8 SPI_Master_TransmitChar(u_int8 Data)
 {
-	DIO_WriteChannel(SPI_SS_PIN, STD_LOW);
 	SPDR_Register = Data;
 	while(ReadBit(SPSR_Register, SPIF) == 0);
 	return SPDR_Register;
