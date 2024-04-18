@@ -1,18 +1,20 @@
 #ifndef TWI_H_
 #define TWI_H_
-#include "TWI_Cfg.h"
+#include "../../LIB/Clock.h"
+#include "../../LIB/STD_TYPES.h"
+#include "../../LIB/BITMATH.h"
+#include "../../MCAL/DIO/DIO.h"
+#include "TWI_Registers.h"
+#include "TWI_Types.h"
 
-void TWI_MasterInit(u_int8 Address, u_int32 F_TWI, TWI_Prescaler_Value Prescaler);
-void TWI_SlaveInit(u_int8 Address);
-void TWI_MasterStart(void);
-void TWI_MasterSendAddress(u_int8 SLA_RW);
-void TWI_MasterTransmitData(u_int8 data);
-u_int8 TWI_MasterReceiveData(void);
-void TWI_MasterSendACK(void);
-void TWI_MasterSendNACK(void);
-void TWI_MasterStop(void);
-void TWI_SlaveReceiveACK(void);
-void TWI_SlaveSendACK(void);
-u_int8 TWI_Status(void);
+void TWI_Init(I2C_Prescaler Prescale,I2C_interruptState int_state,u_int32 F_SCL,u_int8 I2C_Address);
+void TWI_Start(void);
+void TWI_Stop(void);
+void TWI_Write(u_int8 data);
+u_int8 TWI_Read_With_ACK(void); //read with send Ack
+u_int8 TWI_Read_With_NACK(void); //read without send Ack
+u_int8 TWI_Get_Status(void);
+I2C_States I2C_ByteWrite(u_int8 SL_Address, u_int8 Reg_Address ,u_int8 Data);
+I2C_States I2C_ByteRead(u_int8 SL_Address , u_int8 Reg_Address , u_int8 * DataRcv);
 
 #endif
