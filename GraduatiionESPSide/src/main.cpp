@@ -6,6 +6,7 @@ unsigned long lastMsg = 0;
 char msg[50];
 char i = 0;
 char flag = 0;
+char flag_send = 0;
 
 void setup()
 {
@@ -20,7 +21,7 @@ void loop()
     {
         if(!checkMQTTConnection())
         {
-            Serial.println("0");
+            Serial.println("ERROR");
             MQTT_connectToBroker("emqx", "public");
             flag = 1;
         }
@@ -28,7 +29,7 @@ void loop()
         {
             if(flag == 1)
             {
-                Serial.println("1");
+                Serial.println("OK");
                 flag = 0;
             }
             loopMQTT();
@@ -42,14 +43,22 @@ void loop()
                     msg[i] = UART_Receive();
                     i++;
                 }
-                i = 0;
-                MQTT_Publish("emqx/esp8266", msg);
+                if(i > 0)
+                {
+                    i = 0;
+                    flag_send = 1;
+                }
+                if(flag_send == 1)
+                {
+                    MQTT_Publish("emqx/esp8266", msg);
+                    flag_send = 0;
+                }
             }
         }
     }
     else
     {
-        Serial.println("0");
+        Serial.println("ERROR");
         ESP01_ConnectToWifi("WeMO", "@mo@01014001121#");
         flag = 1;
     }

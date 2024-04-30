@@ -29,3 +29,8 @@ char UART_isAvailable()
         return 0;
     }
 }
+
+void UART_Flush()
+{
+    Serial.flush();
+}

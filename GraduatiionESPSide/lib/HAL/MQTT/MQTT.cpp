@@ -19,7 +19,7 @@ void MQTT_connectToBroker(const char* username, const char* password)
         if (mqtt_client.connect(clientId.c_str(), username, password))
         {
             Serial.println("Connected to Broker");
-            MQTT_Publish("emqx/esp8266", "Hello World!");
+            MQTT_Publish("emqx/esp8266", "Controller Connected");
         } 
         else
         {
@@ -64,7 +64,7 @@ void loopMQTT()
 
 void MQTT_Publish(const char* topic, const char* payload)
 {
-    mqtt_client.publish(topic, payload);
+    mqtt_client.publish(topic, payload, true);
 }
 
 void MQTT_Subscribe(const char* topic)
