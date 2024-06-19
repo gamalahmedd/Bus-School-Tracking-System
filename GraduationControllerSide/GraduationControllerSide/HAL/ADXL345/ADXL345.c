@@ -18,7 +18,7 @@ void Accelerometor_init(ADX345_PowerModes Mode, ADXL345_Address EFF_Address)
 void setRange(ADXL345_Address EFF_Address, adxl345_range_t range)
 {
 	// Get actual value register
-	uint8_t value = 0;
+	u_int8 value = 0;
 	I2C_ByteRead(EFF_Address, ADXL345_REG_DATA_FORMAT, &value);
 
 	// Update the data rate
@@ -53,7 +53,7 @@ void clearSettings(ADXL345_Address EFF_Address)
 	I2C_ByteWrite(EFF_Address, ADXL345_REG_THRESH_FF, 0x00);
 	I2C_ByteWrite(EFF_Address, ADXL345_REG_TIME_FF, 0x00);
 
-	uint8_t value;
+	u_int8 value;
 
 	I2C_ByteRead(EFF_Address, ADXL345_REG_ACT_INACT_CTL, &value);
 	value &= 0b10001000;
@@ -68,11 +68,11 @@ void Accelerometor_ReadAxis(ADXL345_Address EFF_Address, volatile ADXL345_Data *
 {
 	typedef union
 	{
-		uint16 Data;
+		u_int16 Data;
 		struct
 		{
-			uint8 LSB;
-			uint8 MSB;
+			u_int8 LSB;
+			u_int8 MSB;
 		} Byte;
 	} ADXL_DA;
 
@@ -105,21 +105,21 @@ float constrain(float amt, float low, float high)
 // Set Free Fall Threshold (65.5mg / LSB)
 void setFreeFallThreshold(ADXL345_Address EFF_Address, float threshold)
 {
-	uint8_t scaled = constrain(threshold / 0.0625f, 0, 255);
+	u_int8 scaled = constrain(threshold / 0.0625f, 0, 255);
 	I2C_ByteWrite(EFF_Address, ADXL345_REG_THRESH_FF, scaled);
 }
 
 // Set Free Fall Duration (5ms / LSB)
 void setFreeFallDuration(ADXL345_Address EFF_Address, float duration)
 {
-	uint8_t scaled = constrain(duration / 0.005f, 0, 255);
+	u_int8 scaled = constrain(duration / 0.005f, 0, 255);
 	I2C_ByteWrite(EFF_Address, ADXL345_REG_TIME_FF, scaled);
 }
 
 // Set Activity Threshold (62.5mg / LSB)
 void setActivityThreshold(ADXL345_Address EFF_Address, float threshold)
 {
-	uint8_t scaled = constrain(threshold / 0.0625f, 0, 255);
+	u_int8 scaled = constrain(threshold / 0.0625f, 0, 255);
 	I2C_ByteWrite(EFF_Address, ADXL345_REG_THRESH_ACT, scaled);
 }
 
@@ -132,7 +132,7 @@ void setYActivity(ADXL345_Address EFF_Address)
 // th - 0.6, duration - 0.08
 void setFreeFallParameters(ADXL345_Address EFF_Address, float threshold, float duration, adxl345_int_t int_no)
 {
-	uint8_t value = 0;
+	u_int8 value = 0;
 	I2C_ByteRead(EFF_Address, ADXL345_REG_INT_MAP, &value);
 	I2C_ByteWrite(EFF_Address, ADXL345_REG_INT_MAP, value | (int_no << ADXL345_FREE_FALL));
 	I2C_ByteRead(EFF_Address, ADXL345_REG_INT_ENABLE, &value);
@@ -144,7 +144,7 @@ void setFreeFallParameters(ADXL345_Address EFF_Address, float threshold, float d
 // th - 2
 void setActivityParameters(ADXL345_Address EFF_Address, float threshold, adxl345_int_t int_no)
 {
-	uint8_t value = 0;
+	u_int8 value = 0;
 	I2C_ByteRead(EFF_Address, ADXL345_REG_INT_MAP, &value);
 	I2C_ByteWrite(EFF_Address, ADXL345_REG_INT_MAP, value | (int_no << ADXL345_ACTIVITY));
 	I2C_ByteRead(EFF_Address, ADXL345_REG_INT_ENABLE, &value);

@@ -7,22 +7,20 @@ void TWI_Init(I2C_Prescaler Prescale , I2C_interruptState int_state , u_int32 F_
 	switch (Prescale)
 	{
 		case I2C_PRESCALE1:
-								TWBR = (u_int8) (((float)F_CPU/(2.0*F_SCL)) -8);
-								break;
+			TWBR = (u_int8) (((float)F_CPU/(2.0*F_SCL)) -8);
+			break;
 		case I2C_PRESCALE4:
-								TWBR = (u_int8) (((float)F_CPU/(8.0*F_SCL)) -2);
-								break;
+			TWBR = (u_int8) (((float)F_CPU/(8.0*F_SCL)) -2);
+			break;
 		case I2C_PRESCALE16:
-								TWBR = (u_int8) (((float)F_CPU/(32*F_SCL)) -0.5);
+			TWBR = (u_int8) (((float)F_CPU/(32*F_SCL)) -0.5);
 								break;
 		case I2C_PRESCALE64:
-								TWBR = (u_int8) (((float)F_CPU/(128*F_SCL)) -0.125);
-								break;
+			TWBR = (u_int8) (((float)F_CPU/(128*F_SCL)) -0.125);
+			break;
 		default:
-					break;
+			break;
 	}
-   
-	
 	TWSR |= (Prescale & 0x03);
 	TWCR |= (1<<TWEN) | (int_state & 0x01) ;
 }
@@ -50,7 +48,7 @@ void TWI_Stop(void)
 	 * send the stop bit by TWSTO=1
 	 * Enable TWI Module TWEN=1 
 	 */
-	TWCR &= 0X07;
+	TWCR &= 0x07;
 	
     TWCR |=  (1<<TWINT) | (1<<TWSTO);
  
