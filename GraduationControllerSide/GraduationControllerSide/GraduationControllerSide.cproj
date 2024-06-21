@@ -365,6 +365,12 @@
     <Compile Include="Service\queue.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Service\service.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Service\service.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Service\stream_buffer.c">
       <SubType>compile</SubType>
     </Compile>
