@@ -1,5 +1,4 @@
 #include "String_Find.h"
-#include <string.h>
 
 unsigned char find_string(unsigned char *string, unsigned char* string_find)
 {

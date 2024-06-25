@@ -2,6 +2,10 @@
 
 void TWI_Init(I2C_Prescaler Prescale , I2C_interruptState int_state , u_int32 F_SCL , u_int8 Address)
 {
+	DIO_ConfigChannel(DIO_ChannelD0, INPUT);
+	DIO_ConfigChannel(DIO_ChannelD1, INPUT);
+	DIO_ConfigPullUp(DIO_ChannelD0, DISABLE);
+	DIO_ConfigPullUp(DIO_ChannelD1, DISABLE);
 	TWAR = Address<<1;
 	 /*  Calculating Bit Rate: */
 	switch (Prescale)
@@ -78,13 +82,13 @@ u_int8 TWI_Read_With_ACK(void)
 	 * Enable TWI Module TWEN=1 
 	 */ 
 	TWCR &= 0X07;
-    TWCR |= (1<<TWINT) | (1<<TWEA);
+    TWCR |= (1 << TWEN) | (1<<TWINT) | (1<<TWEA);
 	    
     
     /* Wait for TWINT flag set in TWCR Register (start bit is send successfully) */
     while(ISBETCLEAR(TWCR,TWINT));
     /* Read Data */
-    return TWDR;
+    return 0;
 }
 
 u_int8 TWI_Read_With_NACK(void)
@@ -111,89 +115,42 @@ u_int8 TWI_Get_Status(void)
 I2C_States I2C_ByteWrite(u_int8 SL_Address,u_int8 Reg_Address ,u_int8 Data )
 {
 	TWI_Start();
-	if (TWI_Get_Status() != TW_START) // 0x08 
-	{
-		TWI_Stop();
-		return TWI_Get_Status();
-	}
+	while(TWI_Get_Status() != TW_START); // 0x08 
 	
 	TWI_Write((SL_Address<<1));
-if (TWI_Get_Status() != TW_MT_SLA_W_ACK)
-	{
-
-		TWI_Stop();
-		return TWI_Get_Status();
-	}
+	while (TWI_Get_Status() != TW_MT_SLA_W_ACK);
 	
 	TWI_Write(Reg_Address);
-if (TWI_Get_Status() != TW_MT_DATA_ACK)
-	{
-		TWI_Stop();
-		return TWI_Get_Status();
-	}
+	while (TWI_Get_Status() != TW_MT_DATA_ACK);
 	
-TWI_Write(Data);
-if (TWI_Get_Status() != TW_MT_DATA_ACK)
-	{
-		TWI_Stop();
-		return TWI_Get_Status();
-	}
+	TWI_Write(Data);
+	while(TWI_Get_Status() != TW_MT_DATA_ACK);
 	
 	TWI_Stop(); // Send A stop  // Release The Clock Bus 
 	return 0;
 }
-
-
-
-
- 
 
  
 I2C_States I2C_ByteRead(u_int8 SL_Address , u_int8 Reg_Address , u_int8 * DataRcv)
 {
 	
 	TWI_Start();
-	if (TWI_Get_Status() != TW_START)
-	{
-		TWI_Stop();
-		return TWI_Get_Status();
-	}
-	
-	
+	while(TWI_Get_Status() != TW_START);
 	
 	TWI_Write((SL_Address<<1));
-	if (TWI_Get_Status() != TW_MT_SLA_W_ACK)
-	{
-
-		TWI_Stop();
-		return TWI_Get_Status();
-	}
+	while(TWI_Get_Status() != TW_MT_SLA_W_ACK);
 	
 	TWI_Write(Reg_Address);
-	if (TWI_Get_Status() != TW_MT_DATA_ACK)
-	{
-		TWI_Stop();
-		return TWI_Get_Status();
-	}
+	while(TWI_Get_Status() != TW_MT_DATA_ACK);
 	
 	TWI_Start(); //rep start
-	if (TWI_Get_Status() != TW_REP_START)
-	{
-		TWI_Stop();
-		return TWI_Get_Status();
-	}
+	while(TWI_Get_Status() != TW_REP_START);
 	
 	TWI_Write((SL_Address<<1) | READ);
-	if (TWI_Get_Status() != TW_MT_SLA_R_ACK)
-	{
-
-		TWI_Stop();
-		return TWI_Get_Status();
-	}
+	while(TWI_Get_Status() != TW_MT_SLA_R_ACK);
 	
 	*DataRcv=TWI_Read_With_NACK();
 	TWI_Stop();
-	
 
 	return 0;		
 }

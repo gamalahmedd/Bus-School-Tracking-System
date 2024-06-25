@@ -2,7 +2,11 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
+HAL\ADXL345\ADXL345.c
+
 HAL\ESP01\ESP01.c
+
+HAL\GPS\GPS.c
 
 HAL\LCD\LCD.c
 
@@ -26,6 +30,8 @@ MCAL\SPI\SPI.c
 
 MCAL\SPI\SPI_Cfg.c
 
+MCAL\TWI\TWI.c
+
 MCAL\UART\UART.c
 
 MCAL\UART\UART_Cfg.c
@@ -41,6 +47,8 @@ Service\portable\GCC\ATMega323\port.c
 Service\portable\MemMang\heap_3.c
 
 Service\queue.c
+
+Service\service.c
 
 Service\stream_buffer.c
 

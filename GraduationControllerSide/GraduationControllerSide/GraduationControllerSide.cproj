@@ -155,6 +155,15 @@
     <Compile Include="HAL\ESP01\ESP01_Types.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="HAL\GPS\GPS.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\GPS\GPS.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\GPS\GPS_Types.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="HAL\LCD\LCD.c">
       <SubType>compile</SubType>
     </Compile>
@@ -387,6 +396,7 @@
     <Folder Include="HAL\LCD\" />
     <Folder Include="HAL\MFRC\" />
     <Folder Include="HAL\ADXL345" />
+    <Folder Include="HAL\GPS" />
     <Folder Include="LIB\" />
     <Folder Include="MCAL\" />
     <Folder Include="MCAL\DIO\" />

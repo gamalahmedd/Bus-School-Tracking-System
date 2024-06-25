@@ -37,11 +37,14 @@ SUBDIRS :=  \
 ../HAL/ESP01/ \
 ../HAL/LCD/ \
 ../HAL/MFRC/ \
+../HAL/ADXL345 \
+../HAL/GPS \
 ../LIB/ \
 ../MCAL/ \
 ../MCAL/DIO/ \
 ../MCAL/EXTI/ \
 ../MCAL/GIE/ \
+../MCAL/TWI \
 ../MCAL/SPI/ \
 ../MCAL/UART/ \
 ../Service \
@@ -54,7 +57,9 @@ SUBDIRS :=  \
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
+../HAL/ADXL345/ADXL345.c \
 ../HAL/ESP01/ESP01.c \
+../HAL/GPS/GPS.c \
 ../HAL/LCD/LCD.c \
 ../HAL/LCD/LCD_Config.c \
 ../HAL/MFRC/mfrc522.c \
@@ -66,6 +71,7 @@ C_SRCS +=  \
 ../MCAL/GIE/GIE.c \
 ../MCAL/SPI/SPI.c \
 ../MCAL/SPI/SPI_Cfg.c \
+../MCAL/TWI/TWI.c \
 ../MCAL/UART/UART.c \
 ../MCAL/UART/UART_Cfg.c \
 ../Service/croutine.c \
@@ -74,6 +80,7 @@ C_SRCS +=  \
 ../Service/portable/GCC/ATMega323/port.c \
 ../Service/portable/MemMang/heap_3.c \
 ../Service/queue.c \
+../Service/service.c \
 ../Service/stream_buffer.c \
 ../Service/tasks.c \
 ../Service/timers.c
@@ -86,7 +93,9 @@ ASM_SRCS +=
 
 
 OBJS +=  \
+HAL/ADXL345/ADXL345.o \
 HAL/ESP01/ESP01.o \
+HAL/GPS/GPS.o \
 HAL/LCD/LCD.o \
 HAL/LCD/LCD_Config.o \
 HAL/MFRC/mfrc522.o \
@@ -98,6 +107,7 @@ MCAL/EXTI/EXTI.o \
 MCAL/GIE/GIE.o \
 MCAL/SPI/SPI.o \
 MCAL/SPI/SPI_Cfg.o \
+MCAL/TWI/TWI.o \
 MCAL/UART/UART.o \
 MCAL/UART/UART_Cfg.o \
 Service/croutine.o \
@@ -106,12 +116,15 @@ Service/list.o \
 Service/portable/GCC/ATMega323/port.o \
 Service/portable/MemMang/heap_3.o \
 Service/queue.o \
+Service/service.o \
 Service/stream_buffer.o \
 Service/tasks.o \
 Service/timers.o
 
 OBJS_AS_ARGS +=  \
+HAL/ADXL345/ADXL345.o \
 HAL/ESP01/ESP01.o \
+HAL/GPS/GPS.o \
 HAL/LCD/LCD.o \
 HAL/LCD/LCD_Config.o \
 HAL/MFRC/mfrc522.o \
@@ -123,6 +136,7 @@ MCAL/EXTI/EXTI.o \
 MCAL/GIE/GIE.o \
 MCAL/SPI/SPI.o \
 MCAL/SPI/SPI_Cfg.o \
+MCAL/TWI/TWI.o \
 MCAL/UART/UART.o \
 MCAL/UART/UART_Cfg.o \
 Service/croutine.o \
@@ -131,12 +145,15 @@ Service/list.o \
 Service/portable/GCC/ATMega323/port.o \
 Service/portable/MemMang/heap_3.o \
 Service/queue.o \
+Service/service.o \
 Service/stream_buffer.o \
 Service/tasks.o \
 Service/timers.o
 
 C_DEPS +=  \
+HAL/ADXL345/ADXL345.d \
 HAL/ESP01/ESP01.d \
+HAL/GPS/GPS.d \
 HAL/LCD/LCD.d \
 HAL/LCD/LCD_Config.d \
 HAL/MFRC/mfrc522.d \
@@ -148,6 +165,7 @@ MCAL/EXTI/EXTI.d \
 MCAL/GIE/GIE.d \
 MCAL/SPI/SPI.d \
 MCAL/SPI/SPI_Cfg.d \
+MCAL/TWI/TWI.d \
 MCAL/UART/UART.d \
 MCAL/UART/UART_Cfg.d \
 Service/croutine.d \
@@ -156,12 +174,15 @@ Service/list.d \
 Service/portable/GCC/ATMega323/port.d \
 Service/portable/MemMang/heap_3.d \
 Service/queue.d \
+Service/service.d \
 Service/stream_buffer.d \
 Service/tasks.d \
 Service/timers.d
 
 C_DEPS_AS_ARGS +=  \
+HAL/ADXL345/ADXL345.d \
 HAL/ESP01/ESP01.d \
+HAL/GPS/GPS.d \
 HAL/LCD/LCD.d \
 HAL/LCD/LCD_Config.d \
 HAL/MFRC/mfrc522.d \
@@ -173,6 +194,7 @@ MCAL/EXTI/EXTI.d \
 MCAL/GIE/GIE.d \
 MCAL/SPI/SPI.d \
 MCAL/SPI/SPI_Cfg.d \
+MCAL/TWI/TWI.d \
 MCAL/UART/UART.d \
 MCAL/UART/UART_Cfg.d \
 Service/croutine.d \
@@ -181,6 +203,7 @@ Service/list.d \
 Service/portable/GCC/ATMega323/port.d \
 Service/portable/MemMang/heap_3.d \
 Service/queue.d \
+Service/service.d \
 Service/stream_buffer.d \
 Service/tasks.d \
 Service/timers.d
@@ -199,7 +222,21 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+HAL/ADXL345/ADXL345.o: ../HAL/ADXL345/ADXL345.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../Service" -I"../Service/portable/GCC/ATMega323" -I"../Service/include" -I"../LIB" -I"../MCAL/UART" -I"../MCAL/SPI" -I"../MCAL/GIE" -I"../MCAL/EXTI" -I"../MCAL/DIO" -I"../HAL/MFRC" -I"../HAL/LCD" -I"../HAL/ESP01"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega128a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega128a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 HAL/ESP01/ESP01.o: ../HAL/ESP01/ESP01.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../Service" -I"../Service/portable/GCC/ATMega323" -I"../Service/include" -I"../LIB" -I"../MCAL/UART" -I"../MCAL/SPI" -I"../MCAL/GIE" -I"../MCAL/EXTI" -I"../MCAL/DIO" -I"../HAL/MFRC" -I"../HAL/LCD" -I"../HAL/ESP01"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega128a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega128a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+HAL/GPS/GPS.o: ../HAL/GPS/GPS.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../Service" -I"../Service/portable/GCC/ATMega323" -I"../Service/include" -I"../LIB" -I"../MCAL/UART" -I"../MCAL/SPI" -I"../MCAL/GIE" -I"../MCAL/EXTI" -I"../MCAL/DIO" -I"../HAL/MFRC" -I"../HAL/LCD" -I"../HAL/ESP01"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega128a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega128a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
@@ -283,6 +320,13 @@ MCAL/SPI/SPI_Cfg.o: ../MCAL/SPI/SPI_Cfg.c
 	@echo Finished building: $<
 	
 
+MCAL/TWI/TWI.o: ../MCAL/TWI/TWI.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../Service" -I"../Service/portable/GCC/ATMega323" -I"../Service/include" -I"../LIB" -I"../MCAL/UART" -I"../MCAL/SPI" -I"../MCAL/GIE" -I"../MCAL/EXTI" -I"../MCAL/DIO" -I"../HAL/MFRC" -I"../HAL/LCD" -I"../HAL/ESP01"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega128a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega128a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 MCAL/UART/UART.o: ../MCAL/UART/UART.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
@@ -333,6 +377,13 @@ Service/portable/MemMang/heap_3.o: ../Service/portable/MemMang/heap_3.c
 	
 
 Service/queue.o: ../Service/queue.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../Service" -I"../Service/portable/GCC/ATMega323" -I"../Service/include" -I"../LIB" -I"../MCAL/UART" -I"../MCAL/SPI" -I"../MCAL/GIE" -I"../MCAL/EXTI" -I"../MCAL/DIO" -I"../HAL/MFRC" -I"../HAL/LCD" -I"../HAL/ESP01"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega128a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega128a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+Service/service.o: ../Service/service.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../Service" -I"../Service/portable/GCC/ATMega323" -I"../Service/include" -I"../LIB" -I"../MCAL/UART" -I"../MCAL/SPI" -I"../MCAL/GIE" -I"../MCAL/EXTI" -I"../MCAL/DIO" -I"../HAL/MFRC" -I"../HAL/LCD" -I"../HAL/ESP01"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega128a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega128a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

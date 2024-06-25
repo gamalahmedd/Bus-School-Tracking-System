@@ -1,5 +1,5 @@
-main.d main.o: .././main.c ../Service/include/../../Service/service.h \
- ../Service/include/FreeRTOS.h \
+Service/service.d Service/service.o: ../Service/service.c \
+ ../Service/service.h ../Service/include/FreeRTOS.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stddef.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stdint.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdint.h \
@@ -63,7 +63,7 @@ main.d main.o: .././main.c ../Service/include/../../Service/service.h \
  ../Service/include/../../MCAL/DIO/DIO.h \
  ../Service/include/../../MCAL/GIE/GIE.h
 
-../Service/include/../../Service/service.h:
+../Service/service.h:
 
 ../Service/include/FreeRTOS.h:
 

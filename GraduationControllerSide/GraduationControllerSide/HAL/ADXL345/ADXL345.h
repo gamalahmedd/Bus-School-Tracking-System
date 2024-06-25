@@ -9,10 +9,10 @@
 #define ADXL345_H_
 
 // edit these includes
-#include "uc_Config.h"
-#include "StandardTypes.h"
-#include "MACROSh.h"
-#include "i2c.h"
+#include "../../LIB/Clock.h"
+#include "../../LIB/STD_TYPES.h"
+#include "../../LIB/BITMATH.h"
+#include "../../MCAL/TWI/TWI.h"
 
 #include "ADXL345_Types.h"
 #include "ADXL345_reg.h"
