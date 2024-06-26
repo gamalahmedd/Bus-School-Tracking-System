@@ -20,7 +20,7 @@ typedef enum {
 	TW_MT_DATA_W_NACK=0x30,
 	TW_MT_SLA_ARB_LOST=0x38,
 	TW_MT_SLA_R_NACK=0x48,
-}I2C_States;
+}TWI_States;
 
 typedef enum {
 	WRITE=0,
@@ -28,15 +28,15 @@ typedef enum {
 }ADDRESS_Mode;
 
 typedef enum {
-	I2C_intDisable = 0x00,
-	I2C_intEnable= 0x01,
-}I2C_interruptState;
+	TWI_intDisable = 0x00,
+	TWI_intEnable= 0x01,
+}TWI_interruptState;
 
 typedef enum {
-	I2C_PRESCALE1,
-	I2C_PRESCALE4,
-	I2C_PRESCALE16,
-	I2C_PRESCALE64,
-}I2C_Prescaler;
+	TWI_PRESCALE1,
+	TWI_PRESCALE4,
+	TWI_PRESCALE16,
+	TWI_PRESCALE64,
+}TWI_Prescaler;
 
 #endif

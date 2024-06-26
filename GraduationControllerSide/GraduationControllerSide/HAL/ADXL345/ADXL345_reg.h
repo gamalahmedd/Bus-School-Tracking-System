@@ -15,30 +15,6 @@ typedef enum
 } ADXL345_Address;
 
 // Register Table From Data Sheet
-typedef enum
-{
-  ADXL345_FULLRANGE = 0,
-  INT_ENABLE = 0x2E,
-  ADXL345_RANGE2G = 0x00,
-  POWER_CTRL = 0x2D,
-  ACCS_THRESH_TAP = 0x1D,
-  ACCS_OFSX = 0x1E,
-  ACCS_OFSY = 0x1F,
-  ACCS_OFSZ = 0x20,
-  ACCS_DUR = 0X21,
-  ACCS_Latent = 0x22,
-  ACCS_Window = 0x23,
-  ACCS_DATAX0 = 0x32,
-  ACCS_DATAX1 = 0x33,
-  ACCS_DATAY0 = 0x34,
-  ACCS_DATAY1 = 0x35,
-  ACCS_DATAZ0 = 0x36,
-  ACCS_DATAZ1 = 0x37,
-  ACCS_DATA_FORMAT = 0x31,
-  ACCS_FIFO_CTL = 0x38,
-  ACCS_FIFO_STATUS = 0x39,
-} ADXL345_RegAddress;
-
 #define ADXL345_ADDRESS (0x53)
 #define ADXL345_REG_DEVID (0x00)
 #define ADXL345_REG_THRESH_TAP (0x1D) // 1

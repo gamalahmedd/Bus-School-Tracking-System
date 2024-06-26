@@ -1,25 +1,21 @@
 #include "TWI.h"
 
-void TWI_Init(I2C_Prescaler Prescale , I2C_interruptState int_state , u_int32 F_SCL , u_int8 Address)
+void TWI_Init(TWI_Prescaler Prescale , TWI_interruptState int_state , u_int32 F_SCL , u_int8 Address)
 {
-	DIO_ConfigChannel(DIO_ChannelD0, INPUT);
-	DIO_ConfigChannel(DIO_ChannelD1, INPUT);
-	DIO_ConfigPullUp(DIO_ChannelD0, DISABLE);
-	DIO_ConfigPullUp(DIO_ChannelD1, DISABLE);
 	TWAR = Address<<1;
 	 /*  Calculating Bit Rate: */
 	switch (Prescale)
 	{
-		case I2C_PRESCALE1:
+		case TWI_PRESCALE1:
 			TWBR = (u_int8) (((float)F_CPU/(2.0*F_SCL)) -8);
 			break;
-		case I2C_PRESCALE4:
+		case TWI_PRESCALE4:
 			TWBR = (u_int8) (((float)F_CPU/(8.0*F_SCL)) -2);
 			break;
-		case I2C_PRESCALE16:
+		case TWI_PRESCALE16:
 			TWBR = (u_int8) (((float)F_CPU/(32*F_SCL)) -0.5);
 								break;
-		case I2C_PRESCALE64:
+		case TWI_PRESCALE64:
 			TWBR = (u_int8) (((float)F_CPU/(128*F_SCL)) -0.125);
 			break;
 		default:
@@ -82,13 +78,13 @@ u_int8 TWI_Read_With_ACK(void)
 	 * Enable TWI Module TWEN=1 
 	 */ 
 	TWCR &= 0X07;
-    TWCR |= (1 << TWEN) | (1<<TWINT) | (1<<TWEA);
+    TWCR |= (1<<TWINT) | (1<<TWEA);
 	    
     
     /* Wait for TWINT flag set in TWCR Register (start bit is send successfully) */
     while(ISBETCLEAR(TWCR,TWINT));
     /* Read Data */
-    return 0;
+    return TWDR;
 }
 
 u_int8 TWI_Read_With_NACK(void)
@@ -112,45 +108,92 @@ u_int8 TWI_Get_Status(void)
 }
 
 
-I2C_States I2C_ByteWrite(u_int8 SL_Address,u_int8 Reg_Address ,u_int8 Data )
+TWI_States TWI_ByteWrite(u_int8 SL_Address,u_int8 Reg_Address ,u_int8 Data )
 {
 	TWI_Start();
-	while(TWI_Get_Status() != TW_START); // 0x08 
+	if (TWI_Get_Status() != TW_START) // 0x08 
+	{
+		TWI_Stop();
+		return TWI_Get_Status();
+	}
 	
 	TWI_Write((SL_Address<<1));
-	while (TWI_Get_Status() != TW_MT_SLA_W_ACK);
+if (TWI_Get_Status() != TW_MT_SLA_W_ACK)
+	{
+
+		TWI_Stop();
+		return TWI_Get_Status();
+	}
 	
 	TWI_Write(Reg_Address);
-	while (TWI_Get_Status() != TW_MT_DATA_ACK);
+if (TWI_Get_Status() != TW_MT_DATA_ACK)
+	{
+		TWI_Stop();
+		return TWI_Get_Status();
+	}
 	
-	TWI_Write(Data);
-	while(TWI_Get_Status() != TW_MT_DATA_ACK);
+TWI_Write(Data);
+if (TWI_Get_Status() != TW_MT_DATA_ACK)
+	{
+		TWI_Stop();
+		return TWI_Get_Status();
+	}
 	
 	TWI_Stop(); // Send A stop  // Release The Clock Bus 
 	return 0;
 }
 
+
+
+
  
-I2C_States I2C_ByteRead(u_int8 SL_Address , u_int8 Reg_Address , u_int8 * DataRcv)
+
+ 
+TWI_States TWI_ByteRead(u_int8 SL_Address , u_int8 Reg_Address , u_int8 * DataRcv)
 {
 	
 	TWI_Start();
-	while(TWI_Get_Status() != TW_START);
+	if (TWI_Get_Status() != TW_START)
+	{
+		TWI_Stop();
+		return TWI_Get_Status();
+	}
+	
+	
 	
 	TWI_Write((SL_Address<<1));
-	while(TWI_Get_Status() != TW_MT_SLA_W_ACK);
+	if (TWI_Get_Status() != TW_MT_SLA_W_ACK)
+	{
+
+		TWI_Stop();
+		return TWI_Get_Status();
+	}
 	
 	TWI_Write(Reg_Address);
-	while(TWI_Get_Status() != TW_MT_DATA_ACK);
+	if (TWI_Get_Status() != TW_MT_DATA_ACK)
+	{
+		TWI_Stop();
+		return TWI_Get_Status();
+	}
 	
 	TWI_Start(); //rep start
-	while(TWI_Get_Status() != TW_REP_START);
+	if (TWI_Get_Status() != TW_REP_START)
+	{
+		TWI_Stop();
+		return TWI_Get_Status();
+	}
 	
 	TWI_Write((SL_Address<<1) | READ);
-	while(TWI_Get_Status() != TW_MT_SLA_R_ACK);
+	if (TWI_Get_Status() != TW_MT_SLA_R_ACK)
+	{
+
+		TWI_Stop();
+		return TWI_Get_Status();
+	}
 	
 	*DataRcv=TWI_Read_With_NACK();
 	TWI_Stop();
+	
 
 	return 0;		
 }

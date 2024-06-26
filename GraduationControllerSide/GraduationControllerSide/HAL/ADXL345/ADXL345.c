@@ -8,18 +8,17 @@
 
 #include "ADXL345.h"
 
-void Accelerometor_init(ADX345_PowerModes Mode, ADXL345_Address EFF_Address)
+void Accelerometor_init()
 {
-	I2C_ByteWrite(EFF_Address, POWER_CTRL, Mode);
-	clearSettings(EFF_Address);
+	TWI_Init(TWI_PRESCALER,TWI_interrupt_State,TWI_F_SCL,Slave_Address);
+	TWI_ByteWrite(Slave_Address, ADXL345_REG_POWER_CTL, Mode);
+	clearSettings();
 }
 
 // Set Range
-void setRange(ADXL345_Address EFF_Address, adxl345_range_t range)
+void setRange( adxl345_range_t range)
 {
-	// Get actual value register
 	u_int8 value = 0;
-	I2C_ByteRead(EFF_Address, ADXL345_REG_DATA_FORMAT, &value);
 
 	// Update the data rate
 	// (&) 0b11110000 (0xF0 - Leave HSB)
@@ -28,43 +27,41 @@ void setRange(ADXL345_Address EFF_Address, adxl345_range_t range)
 	value &= 0xF0;
 	value |= range;
 	value |= 0x08;
-
-	I2C_ByteWrite(EFF_Address, ADXL345_REG_DATA_FORMAT, value);
+	TWI_ByteWrite(Slave_Address, ADXL345_REG_DATA_FORMAT, value);
 }
 
 // Set Data Rate
-void setDataRate(ADXL345_Address EFF_Address, adxl345_dataRate_t dataRate)
+void setDataRate(adxl345_dataRate_t dataRate)
 {
-	I2C_ByteWrite(EFF_Address, ADXL345_REG_BW_RATE, dataRate);
+	TWI_ByteWrite(Slave_Address, ADXL345_REG_BW_RATE, dataRate);
 }
 
-void clearSettings(ADXL345_Address EFF_Address)
+void clearSettings()
 {
-	setRange(EFF_Address, ADXL345_RANGE_2G);
-	setDataRate(EFF_Address, ADXL345_DATARATE_100HZ);
+	setRange(Range);
+	setDataRate(BW_RATE);
 
-	I2C_ByteWrite(EFF_Address, ADXL345_REG_THRESH_TAP, 0x00);
-	I2C_ByteWrite(EFF_Address, ADXL345_REG_DUR, 0x00);
-	I2C_ByteWrite(EFF_Address, ADXL345_REG_LATENT, 0x00);
-	I2C_ByteWrite(EFF_Address, ADXL345_REG_WINDOW, 0x00);
-	I2C_ByteWrite(EFF_Address, ADXL345_REG_THRESH_ACT, 0x00);
-	I2C_ByteWrite(EFF_Address, ADXL345_REG_THRESH_INACT, 0x00);
-	I2C_ByteWrite(EFF_Address, ADXL345_REG_TIME_INACT, 0x00);
-	I2C_ByteWrite(EFF_Address, ADXL345_REG_THRESH_FF, 0x00);
-	I2C_ByteWrite(EFF_Address, ADXL345_REG_TIME_FF, 0x00);
+	TWI_ByteWrite(Slave_Address, ADXL345_REG_THRESH_TAP, 0x00);
+	TWI_ByteWrite(Slave_Address, ADXL345_REG_DUR, 0x00);
+	TWI_ByteWrite(Slave_Address, ADXL345_REG_LATENT, 0x00);
+	TWI_ByteWrite(Slave_Address, ADXL345_REG_WINDOW, 0x00);
+	TWI_ByteWrite(Slave_Address, ADXL345_REG_THRESH_ACT, 0x00);
+	TWI_ByteWrite(Slave_Address, ADXL345_REG_THRESH_INACT, 0x00);
+	TWI_ByteWrite(Slave_Address, ADXL345_REG_TIME_INACT, 0x00);
+	TWI_ByteWrite(Slave_Address, ADXL345_REG_THRESH_FF, 0x00);
+	TWI_ByteWrite(Slave_Address, ADXL345_REG_TIME_FF, 0x00);
 
 	u_int8 value;
-
-	I2C_ByteRead(EFF_Address, ADXL345_REG_ACT_INACT_CTL, &value);
+	TWI_ByteRead(Slave_Address, ADXL345_REG_ACT_INACT_CTL, &value);
 	value &= 0b10001000;
-	I2C_ByteWrite(EFF_Address, ADXL345_REG_ACT_INACT_CTL, value);
+	TWI_ByteWrite(Slave_Address, ADXL345_REG_ACT_INACT_CTL, value);
 
-	I2C_ByteRead(EFF_Address, ADXL345_REG_TAP_AXES, &value);
+	TWI_ByteRead(Slave_Address, ADXL345_REG_TAP_AXES, &value);
 	value &= 0b11111000;
-	I2C_ByteWrite(EFF_Address, ADXL345_REG_TAP_AXES, value);
+	TWI_ByteWrite(Slave_Address, ADXL345_REG_TAP_AXES, value);
 }
 
-void Accelerometor_ReadAxis(ADXL345_Address EFF_Address, volatile ADXL345_Data *Data_ptr)
+void Accelerometor_ReadAxis( volatile ADXL345_Data *Data_ptr)
 {
 	typedef union
 	{
@@ -78,17 +75,17 @@ void Accelerometor_ReadAxis(ADXL345_Address EFF_Address, volatile ADXL345_Data *
 
 	ADXL_DA X, Y, Z;
 
-	I2C_ByteRead(EFF_Address, ACCS_DATAX0, &(X.Byte.LSB));
+	TWI_ByteRead(Slave_Address, ADXL345_REG_DATAX0, &(X.Byte.LSB));
 	_delay_ms(1);
-	I2C_ByteRead(EFF_Address, ACCS_DATAX1, &(X.Byte.MSB));
+	TWI_ByteRead(Slave_Address, ADXL345_REG_DATAX1, &(X.Byte.MSB));
 	_delay_ms(1);
-	I2C_ByteRead(EFF_Address, ACCS_DATAY0, &(Y.Byte.LSB));
+	TWI_ByteRead(Slave_Address, ADXL345_REG_DATAY0, &(Y.Byte.LSB));
 	_delay_ms(1);
-	I2C_ByteRead(EFF_Address, ACCS_DATAY1, &(Y.Byte.MSB));
+	TWI_ByteRead(Slave_Address, ADXL345_REG_DATAY1, &(Y.Byte.MSB));
 	_delay_ms(1);
-	I2C_ByteRead(EFF_Address, ACCS_DATAZ0, &(Z.Byte.LSB));
+	TWI_ByteRead(Slave_Address, ADXL345_REG_DATAZ0, &(Z.Byte.LSB));
 	_delay_ms(1);
-	I2C_ByteRead(EFF_Address, ACCS_DATAZ1, &(Z.Byte.MSB));
+	TWI_ByteRead(Slave_Address, ADXL345_REG_DATAZ1, &(Z.Byte.MSB));
 	_delay_ms(1);
 
 	Data_ptr->X_Axis = X.Data;
@@ -102,53 +99,33 @@ float constrain(float amt, float low, float high)
 	return (amt < low) ? low : ((amt > high) ? high : amt);
 }
 
-// Set Free Fall Threshold (65.5mg / LSB)
-void setFreeFallThreshold(ADXL345_Address EFF_Address, float threshold)
-{
-	u_int8 scaled = constrain(threshold / 0.0625f, 0, 255);
-	I2C_ByteWrite(EFF_Address, ADXL345_REG_THRESH_FF, scaled);
-}
-
-// Set Free Fall Duration (5ms / LSB)
-void setFreeFallDuration(ADXL345_Address EFF_Address, float duration)
-{
-	u_int8 scaled = constrain(duration / 0.005f, 0, 255);
-	I2C_ByteWrite(EFF_Address, ADXL345_REG_TIME_FF, scaled);
-}
-
-// Set Activity Threshold (62.5mg / LSB)
-void setActivityThreshold(ADXL345_Address EFF_Address, float threshold)
-{
-	u_int8 scaled = constrain(threshold / 0.0625f, 0, 255);
-	I2C_ByteWrite(EFF_Address, ADXL345_REG_THRESH_ACT, scaled);
-}
-
-// set activity mode in y only - dc mode   0b 0010 0000
-void setYActivity(ADXL345_Address EFF_Address)
-{
-	I2C_ByteWrite(EFF_Address, ADXL345_REG_ACT_INACT_CTL, 0x20);
-}
-
 // th - 0.6, duration - 0.08
-void setFreeFallParameters(ADXL345_Address EFF_Address, float threshold, float duration, adxl345_int_t int_no)
+void setFreeFallParameters()
 {
 	u_int8 value = 0;
-	I2C_ByteRead(EFF_Address, ADXL345_REG_INT_MAP, &value);
-	I2C_ByteWrite(EFF_Address, ADXL345_REG_INT_MAP, value | (int_no << ADXL345_FREE_FALL));
-	I2C_ByteRead(EFF_Address, ADXL345_REG_INT_ENABLE, &value);
-	I2C_ByteWrite(EFF_Address, ADXL345_REG_INT_ENABLE, value | (1 << ADXL345_FREE_FALL));
-	setFreeFallThreshold(EFF_Address, threshold);
-	setFreeFallDuration(EFF_Address, duration);
+	TWI_ByteRead(Slave_Address, ADXL345_REG_INT_MAP, &value);
+	TWI_ByteWrite(Slave_Address, ADXL345_REG_INT_MAP, value | (FF_INTERRupt_NO << ADXL345_FREE_FALL));
+	TWI_ByteRead(Slave_Address, ADXL345_REG_INT_ENABLE, &value);
+	TWI_ByteWrite(Slave_Address, ADXL345_REG_INT_ENABLE, value | (1 << ADXL345_FREE_FALL));
+	// Set Free Fall Threshold (65.5mg / LSB)
+	u_int8 scaled = constrain(FF_Threshold_Val / 0.0625f, 0, 255);
+	TWI_ByteWrite(Slave_Address, ADXL345_REG_THRESH_FF, scaled);
+	// Set Free Fall Duration (5ms / LSB)
+	u_int8 duration = constrain(FF_Duration/ 0.005f, 0, 255);
+	TWI_ByteWrite(Slave_Address, ADXL345_REG_TIME_FF, duration);
 }
 
 // th - 2
-void setActivityParameters(ADXL345_Address EFF_Address, float threshold, adxl345_int_t int_no)
+void setActivityParameters()
 {
 	u_int8 value = 0;
-	I2C_ByteRead(EFF_Address, ADXL345_REG_INT_MAP, &value);
-	I2C_ByteWrite(EFF_Address, ADXL345_REG_INT_MAP, value | (int_no << ADXL345_ACTIVITY));
-	I2C_ByteRead(EFF_Address, ADXL345_REG_INT_ENABLE, &value);
-	I2C_ByteWrite(EFF_Address, ADXL345_REG_INT_ENABLE, value | (1 << ADXL345_ACTIVITY));
-	setActivityThreshold(EFF_Address, threshold);
-	setYActivity(EFF_Address);
+	TWI_ByteRead(Slave_Address, ADXL345_REG_INT_MAP, &value);
+	TWI_ByteWrite(Slave_Address, ADXL345_REG_INT_MAP, value | (ACT_INTERRupt_NO << ADXL345_ACTIVITY));
+	TWI_ByteRead(Slave_Address, ADXL345_REG_INT_ENABLE, &value);
+	TWI_ByteWrite(Slave_Address, ADXL345_REG_INT_ENABLE, value | (1 << ADXL345_ACTIVITY));
+	// Set Activity Threshold (62.5mg / LSB)
+	u_int8 threshold = constrain(ACT_Threshold_Val / 0.0625f, 0, 255);
+	TWI_ByteWrite(Slave_Address, ADXL345_REG_THRESH_ACT, threshold);
+	// Set Activity Axis
+	TWI_ByteWrite(Slave_Address, ADXL345_REG_ACT_INACT_CTL,ACT_AXIS);
 }
