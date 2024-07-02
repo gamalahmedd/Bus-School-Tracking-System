@@ -10,7 +10,8 @@ MCAL/TWI/TWI.d MCAL/TWI/TWI.o: ../MCAL/TWI/TWI.c ../MCAL/TWI/TWI.h \
  ../MCAL/TWI/../../MCAL/DIO/DIO.h ../MCAL/TWI/../../MCAL/DIO/DIO_Cfg.h \
  ../MCAL/TWI/../../MCAL/DIO/DIO_Types.h ../LIB/BITMATH.h \
  ../MCAL/TWI/../../MCAL/DIO/DIO_Registers.h ../LIB/STD_TYPES.h \
- ../MCAL/TWI/TWI_Registers.h ../MCAL/TWI/TWI_Types.h
+ ../MCAL/TWI/TWI_Registers.h ../MCAL/TWI/TWI_Types.h \
+ ../MCAL/TWI/TWI_Config.h
 
 ../MCAL/TWI/TWI.h:
 
@@ -47,3 +48,5 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 ../MCAL/TWI/TWI_Registers.h:
 
 ../MCAL/TWI/TWI_Types.h:
+
+../MCAL/TWI/TWI_Config.h:

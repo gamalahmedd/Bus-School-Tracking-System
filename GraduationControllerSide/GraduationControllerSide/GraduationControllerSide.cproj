@@ -140,6 +140,9 @@
     <Compile Include="HAL\ADXL345\ADXL345.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="HAL\ADXL345\ADXL345_Config.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="HAL\ADXL345\ADXL345_reg.h">
       <SubType>compile</SubType>
     </Compile>
@@ -272,7 +275,7 @@
     <Compile Include="MCAL\TWI\TWI.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="MCAL\TWI\TWI_Cfg.h">
+    <Compile Include="MCAL\TWI\TWI_Config.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="MCAL\TWI\TWI_Registers.h">
@@ -414,9 +417,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service\include\stdint.readme">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="Service\readme.txt">
       <SubType>compile</SubType>
     </None>
   </ItemGroup>

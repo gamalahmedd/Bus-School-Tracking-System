@@ -13,19 +13,14 @@ void MQTT_connectToBroker(const char* username, const char* password)
 {
     while (!mqtt_client.connected()) 
     {
-        Serial.println("Connecting to broker...");
         String clientId = "ESP8266Client-";
         clientId += String(random(0xffff), HEX);
         if (mqtt_client.connect(clientId.c_str(), username, password))
         {
-            Serial.println("Connected to Broker");
-            MQTT_Publish("emqx/esp8266", "Controller Connected");
+            MQTT_Publish("bus/welcome", "Controller Connected");
         } 
         else
         {
-            Serial.print("Failed to connect to MQTT broker, rc=");
-            Serial.print(mqtt_client.state());
-            Serial.println(" try again in 5 seconds");
             delay(5000);
         }
     }

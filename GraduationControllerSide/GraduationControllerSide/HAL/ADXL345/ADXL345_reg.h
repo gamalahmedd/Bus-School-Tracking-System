@@ -1,10 +1,3 @@
-/*
- * ADXL345_reg.h
- *
- *  Created on: 1/2/2024
- *  Author: Hanaa
- */
-
 #ifndef ADXL345_REG_H
 #define ADXL345_REG_H
 

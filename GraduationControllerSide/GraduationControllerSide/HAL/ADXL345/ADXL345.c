@@ -1,11 +1,3 @@
-/*
- * ADXL345.c
- *
- *  Created on: 1/2/2024
- *  Author: Hanaa
- *
- */
-
 #include "ADXL345.h"
 
 void Accelerometor_init()

@@ -19,7 +19,8 @@ Service/service.d Service/service.o: ../Service/service.c \
  ../Service/include/mpu_wrappers.h ../Service/include/task.h \
  ../Service/include/list.h ../Service/include/queue.h \
  ../Service/include/task.h ../Service/include/semphr.h \
- ../Service/include/queue.h \
+ ../Service/include/queue.h ../Service/include/event_groups.h \
+ ../Service/include/timers.h \
  ../Service/include/../../HAL/ADXL345/ADXL345.h \
  ../Service/include/../../HAL/ADXL345/../../LIB/Clock.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h \
@@ -39,8 +40,10 @@ Service/service.d Service/service.o: ../Service/service.c \
  ../LIB/STD_TYPES.h \
  ../Service/include/../../HAL/ADXL345/../../MCAL/TWI/TWI_Registers.h \
  ../Service/include/../../HAL/ADXL345/../../MCAL/TWI/TWI_Types.h \
+ ../Service/include/../../HAL/ADXL345/../../MCAL/TWI/TWI_Config.h \
  ../Service/include/../../HAL/ADXL345/ADXL345_Types.h \
  ../Service/include/../../HAL/ADXL345/ADXL345_reg.h \
+ ../Service/include/../../HAL/ADXL345/ADXL345_Config.h \
  ../Service/include/../../HAL/LCD/LCD.h \
  ../Service/include/../../HAL/LCD/LCD_Config.h \
  ../Service/include/../../HAL/LCD/LCD_Types.h ../MCAL/DIO/DIO.h \
@@ -115,6 +118,10 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 
 ../Service/include/queue.h:
 
+../Service/include/event_groups.h:
+
+../Service/include/timers.h:
+
 ../Service/include/../../HAL/ADXL345/ADXL345.h:
 
 ../Service/include/../../HAL/ADXL345/../../LIB/Clock.h:
@@ -153,9 +160,13 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 
 ../Service/include/../../HAL/ADXL345/../../MCAL/TWI/TWI_Types.h:
 
+../Service/include/../../HAL/ADXL345/../../MCAL/TWI/TWI_Config.h:
+
 ../Service/include/../../HAL/ADXL345/ADXL345_Types.h:
 
 ../Service/include/../../HAL/ADXL345/ADXL345_reg.h:
+
+../Service/include/../../HAL/ADXL345/ADXL345_Config.h:
 
 ../Service/include/../../HAL/LCD/LCD.h:
 

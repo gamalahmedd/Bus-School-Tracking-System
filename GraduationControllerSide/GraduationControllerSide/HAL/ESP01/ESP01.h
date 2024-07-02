@@ -2,7 +2,6 @@
 #define ESP01_H_
 #include "UART.h"
 #include "String_Find.h"
-#include "GIE.h"
 #include "ESP01_Types.h"
 #include <string.h>
 

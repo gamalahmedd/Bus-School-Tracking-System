@@ -1,10 +1,3 @@
-/*
- * ADXL345.h
- *
- *  Created on: 1/2/2024
- *  Author: Hanaa
- */
-
 #ifndef ADXL345_H_
 #define ADXL345_H_
 
@@ -12,7 +5,6 @@
 #include "../../LIB/STD_TYPES.h"
 #include "../../LIB/BITMATH.h"
 #include "../../MCAL/TWI/TWI.h"
-
 #include "ADXL345_Types.h"
 #include "ADXL345_reg.h"
 #include "ADXL345_Config.h"

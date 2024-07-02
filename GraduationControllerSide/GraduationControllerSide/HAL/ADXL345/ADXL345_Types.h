@@ -1,10 +1,3 @@
-/*
- * ADXL345_Types.h
- *
- *  Created on: 1/2/2024
- *  Author: Hanaa
- */
-
 #ifndef ADXL345_TYPES_H
 #define ADXL345_TYPES_H
 

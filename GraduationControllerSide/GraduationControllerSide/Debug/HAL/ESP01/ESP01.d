@@ -4,7 +4,7 @@ HAL/ESP01/ESP01.d HAL/ESP01/ESP01.o: ../HAL/ESP01/ESP01.c \
  ../MCAL/UART/UART_Types.h ../LIB/String_Find.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\string.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stddef.h \
- ../MCAL/GIE/GIE.h ../MCAL/GIE/GIE_Registers.h ../HAL/ESP01/ESP01_Types.h
+ ../HAL/ESP01/ESP01_Types.h
 
 ../HAL/ESP01/ESP01.h:
 
@@ -25,9 +25,5 @@ HAL/ESP01/ESP01.d HAL/ESP01/ESP01.o: ../HAL/ESP01/ESP01.c \
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\string.h:
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stddef.h:
-
-../MCAL/GIE/GIE.h:
-
-../MCAL/GIE/GIE_Registers.h:
 
 ../HAL/ESP01/ESP01_Types.h:

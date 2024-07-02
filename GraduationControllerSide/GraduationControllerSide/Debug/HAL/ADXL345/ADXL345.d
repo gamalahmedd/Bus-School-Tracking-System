@@ -17,8 +17,10 @@ HAL/ADXL345/ADXL345.d HAL/ADXL345/ADXL345.o: ../HAL/ADXL345/ADXL345.c \
  ../LIB/BITMATH.h \
  ../HAL/ADXL345/../../MCAL/TWI/../../MCAL/DIO/DIO_Registers.h \
  ../LIB/STD_TYPES.h ../HAL/ADXL345/../../MCAL/TWI/TWI_Registers.h \
- ../HAL/ADXL345/../../MCAL/TWI/TWI_Types.h ../HAL/ADXL345/ADXL345_Types.h \
- ../HAL/ADXL345/ADXL345_reg.h
+ ../HAL/ADXL345/../../MCAL/TWI/TWI_Types.h \
+ ../HAL/ADXL345/../../MCAL/TWI/TWI_Config.h \
+ ../HAL/ADXL345/ADXL345_Types.h ../HAL/ADXL345/ADXL345_reg.h \
+ ../HAL/ADXL345/ADXL345_Config.h
 
 ../HAL/ADXL345/ADXL345.h:
 
@@ -64,6 +66,10 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 
 ../HAL/ADXL345/../../MCAL/TWI/TWI_Types.h:
 
+../HAL/ADXL345/../../MCAL/TWI/TWI_Config.h:
+
 ../HAL/ADXL345/ADXL345_Types.h:
 
 ../HAL/ADXL345/ADXL345_reg.h:
+
+../HAL/ADXL345/ADXL345_Config.h:

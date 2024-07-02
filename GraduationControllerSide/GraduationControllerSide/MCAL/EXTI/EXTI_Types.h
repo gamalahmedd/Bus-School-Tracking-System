@@ -27,7 +27,7 @@ typedef enum
 
 typedef enum
 {
-	INT0,
+	INT0 = 0,
 	INT1,
 	INT2,
 	INT3,

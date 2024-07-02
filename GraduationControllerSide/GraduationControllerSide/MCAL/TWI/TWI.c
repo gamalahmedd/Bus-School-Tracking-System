@@ -111,89 +111,42 @@ u_int8 TWI_Get_Status(void)
 TWI_States TWI_ByteWrite(u_int8 SL_Address,u_int8 Reg_Address ,u_int8 Data )
 {
 	TWI_Start();
-	if (TWI_Get_Status() != TW_START) // 0x08 
-	{
-		TWI_Stop();
-		return TWI_Get_Status();
-	}
+	while (TWI_Get_Status() != TW_START); // 0x08 
 	
 	TWI_Write((SL_Address<<1));
-if (TWI_Get_Status() != TW_MT_SLA_W_ACK)
-	{
-
-		TWI_Stop();
-		return TWI_Get_Status();
-	}
+	while (TWI_Get_Status() != TW_MT_SLA_W_ACK);
 	
 	TWI_Write(Reg_Address);
-if (TWI_Get_Status() != TW_MT_DATA_ACK)
-	{
-		TWI_Stop();
-		return TWI_Get_Status();
-	}
+	while (TWI_Get_Status() != TW_MT_DATA_ACK);
 	
-TWI_Write(Data);
-if (TWI_Get_Status() != TW_MT_DATA_ACK)
-	{
-		TWI_Stop();
-		return TWI_Get_Status();
-	}
+	TWI_Write(Data);
+	while (TWI_Get_Status() != TW_MT_DATA_ACK);
 	
 	TWI_Stop(); // Send A stop  // Release The Clock Bus 
 	return 0;
 }
-
-
-
-
- 
 
  
 TWI_States TWI_ByteRead(u_int8 SL_Address , u_int8 Reg_Address , u_int8 * DataRcv)
 {
 	
 	TWI_Start();
-	if (TWI_Get_Status() != TW_START)
-	{
-		TWI_Stop();
-		return TWI_Get_Status();
-	}
-	
-	
+	while (TWI_Get_Status() != TW_START);
 	
 	TWI_Write((SL_Address<<1));
-	if (TWI_Get_Status() != TW_MT_SLA_W_ACK)
-	{
-
-		TWI_Stop();
-		return TWI_Get_Status();
-	}
+	while (TWI_Get_Status() != TW_MT_SLA_W_ACK);
 	
 	TWI_Write(Reg_Address);
-	if (TWI_Get_Status() != TW_MT_DATA_ACK)
-	{
-		TWI_Stop();
-		return TWI_Get_Status();
-	}
+	while (TWI_Get_Status() != TW_MT_DATA_ACK);
 	
 	TWI_Start(); //rep start
-	if (TWI_Get_Status() != TW_REP_START)
-	{
-		TWI_Stop();
-		return TWI_Get_Status();
-	}
+	while (TWI_Get_Status() != TW_REP_START);
 	
 	TWI_Write((SL_Address<<1) | READ);
-	if (TWI_Get_Status() != TW_MT_SLA_R_ACK)
-	{
-
-		TWI_Stop();
-		return TWI_Get_Status();
-	}
+	while (TWI_Get_Status() != TW_MT_SLA_R_ACK);
 	
 	*DataRcv=TWI_Read_With_NACK();
 	TWI_Stop();
-	
 
 	return 0;		
 }
