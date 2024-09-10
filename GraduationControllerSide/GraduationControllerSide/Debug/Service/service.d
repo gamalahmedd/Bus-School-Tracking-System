@@ -1,4 +1,7 @@
 Service/service.d Service/service.o: ../Service/service.c \
+ ../Service/include/../../MCAL/EXTI/EXTI.h \
+ ../Service/include/../../MCAL/EXTI/EXTI_Registers.h ../LIB/STD_TYPES.h \
+ ../Service/include/../../MCAL/EXTI/EXTI_Types.h ../LIB/BITMATH.h \
  ../Service/service.h ../Service/include/FreeRTOS.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stddef.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stdint.h \
@@ -35,9 +38,7 @@ Service/service.d Service/service.o: ../Service/service.c \
  ../Service/include/../../HAL/ADXL345/../../MCAL/TWI/../../MCAL/DIO/DIO.h \
  ../Service/include/../../HAL/ADXL345/../../MCAL/TWI/../../MCAL/DIO/DIO_Cfg.h \
  ../Service/include/../../HAL/ADXL345/../../MCAL/TWI/../../MCAL/DIO/DIO_Types.h \
- ../LIB/BITMATH.h \
  ../Service/include/../../HAL/ADXL345/../../MCAL/TWI/../../MCAL/DIO/DIO_Registers.h \
- ../LIB/STD_TYPES.h \
  ../Service/include/../../HAL/ADXL345/../../MCAL/TWI/TWI_Registers.h \
  ../Service/include/../../HAL/ADXL345/../../MCAL/TWI/TWI_Types.h \
  ../Service/include/../../HAL/ADXL345/../../MCAL/TWI/TWI_Config.h \
@@ -47,11 +48,13 @@ Service/service.d Service/service.o: ../Service/service.c \
  ../Service/include/../../HAL/LCD/LCD.h \
  ../Service/include/../../HAL/LCD/LCD_Config.h \
  ../Service/include/../../HAL/LCD/LCD_Types.h ../MCAL/DIO/DIO.h \
- ../LIB/Clock.h ../Service/include/../../HAL/ESP01/ESP01.h \
- ../MCAL/UART/UART.h ../MCAL/UART/UART_Registers.h \
- ../MCAL/UART/UART_Cfg.h ../MCAL/UART/UART_Types.h ../LIB/String_Find.h \
+ ../LIB/Clock.h \
+ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdio.h \
+ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stdarg.h \
+ ../Service/include/../../HAL/ESP01/ESP01.h ../MCAL/UART/UART.h \
+ ../MCAL/UART/UART_Registers.h ../MCAL/UART/UART_Cfg.h \
+ ../MCAL/UART/UART_Types.h ../LIB/String_Find.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\string.h \
- ../MCAL/GIE/GIE.h ../MCAL/GIE/GIE_Registers.h \
  ../Service/include/../../HAL/ESP01/ESP01_Types.h \
  ../Service/include/../../HAL/MFRC/mfrc522.h \
  ../Service/include/../../HAL/MFRC/mfrc522_cmd.h \
@@ -62,9 +65,21 @@ Service/service.d Service/service.o: ../Service/service.c \
  ../Service/include/../../HAL/GPS/../../LIB/Clock.h \
  ../Service/include/../../HAL/GPS/../../LIB/String_Find.h \
  ../Service/include/../../HAL/GPS/../../LIB/STD_TYPES.h \
+ ../Service/include/../../HAL/GPS/../../MCAL/GIE/GIE.h \
+ ../Service/include/../../HAL/GPS/../../MCAL/GIE/GIE_Registers.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h \
  ../Service/include/../../MCAL/DIO/DIO.h \
  ../Service/include/../../MCAL/GIE/GIE.h
+
+../Service/include/../../MCAL/EXTI/EXTI.h:
+
+../Service/include/../../MCAL/EXTI/EXTI_Registers.h:
+
+../LIB/STD_TYPES.h:
+
+../Service/include/../../MCAL/EXTI/EXTI_Types.h:
+
+../LIB/BITMATH.h:
 
 ../Service/service.h:
 
@@ -150,11 +165,7 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 
 ../Service/include/../../HAL/ADXL345/../../MCAL/TWI/../../MCAL/DIO/DIO_Types.h:
 
-../LIB/BITMATH.h:
-
 ../Service/include/../../HAL/ADXL345/../../MCAL/TWI/../../MCAL/DIO/DIO_Registers.h:
-
-../LIB/STD_TYPES.h:
 
 ../Service/include/../../HAL/ADXL345/../../MCAL/TWI/TWI_Registers.h:
 
@@ -178,6 +189,10 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 
 ../LIB/Clock.h:
 
+c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdio.h:
+
+c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stdarg.h:
+
 ../Service/include/../../HAL/ESP01/ESP01.h:
 
 ../MCAL/UART/UART.h:
@@ -191,10 +206,6 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 ../LIB/String_Find.h:
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\string.h:
-
-../MCAL/GIE/GIE.h:
-
-../MCAL/GIE/GIE_Registers.h:
 
 ../Service/include/../../HAL/ESP01/ESP01_Types.h:
 
@@ -215,6 +226,10 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 ../Service/include/../../HAL/GPS/../../LIB/String_Find.h:
 
 ../Service/include/../../HAL/GPS/../../LIB/STD_TYPES.h:
+
+../Service/include/../../HAL/GPS/../../MCAL/GIE/GIE.h:
+
+../Service/include/../../HAL/GPS/../../MCAL/GIE/GIE_Registers.h:
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h:
 

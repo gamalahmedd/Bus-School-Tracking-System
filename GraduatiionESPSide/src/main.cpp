@@ -4,17 +4,19 @@
 #include "../lib/LIB/String_Find.h"
 
 unsigned long lastMsg = 0;
-unsigned char msg[100];
-unsigned char msg_len;
-unsigned char flag = 0;
+char msg_len;
+char flag = 0;
+char msg[50];
+char msg_send[50];
 
 void setup()
 {
     UART_Init();
-    ESP01_ConnectToWifi("WeMO", "@mo@01014001121#");
+    ESP01_ConnectToWifi("Jimmy", "11223344");
     MQTT_Init("broker.emqx.io", 1883);
-    memset(msg, 0, 100);
+    memset(msg, 0, 50);
     msg_len = 0;
+    memset(msg_send, 0, 50);
 }
 
 void loop()
@@ -23,7 +25,7 @@ void loop()
     {
         if(!checkMQTTConnection())
         {
-            Serial.println("ERROR");
+            Serial.println("ESP NOT CONNECTED");
             MQTT_connectToBroker("emqx", "public");
             flag = 1;
         }
@@ -31,7 +33,7 @@ void loop()
         {
             if(flag == 1)
             {
-                Serial.println("OK");
+                Serial.println("ESP CONNECTED");
                 flag = 0;
             }
             loopMQTT();
@@ -42,28 +44,46 @@ void loop()
                 lastMsg = now;
                 while(UART_isAvailable())
                 {
-                    msg[i] = UART_Receive();
+                    msg[msg_len] = UART_Receive();
                     msg_len++;
-                }
-                if(find_string(msg, "RFID") == 1)
+                } 
+                if(find_string(msg, "RFID-") == 1)
                 {
-
-                }
-                else if(find_string(msg, "GPS") == 1)
+                    find_get_string(msg, "RFID-", 5, "RFID", 0, msg_send);
+                    MQTT_Publish("bus/attendance", msg_send);
+                    memset(msg, 0, msg_len);
+                    memset(msg_send, 0, 50);
+                    msg_len = 0;
+                } 
+                else if(find_string(msg, "GPS-") == 1)
                 {
-
+                    find_get_string(msg, "GPS-", 4, "GPS", 0, msg_send);
+                    MQTT_Publish("bus/location", msg_send);
+                    memset(msg, 0, msg_len);
+                    memset(msg_send, 0, 50);
+                    msg_len = 0;
                 }
-                else if(find_string(msg, "ADXL") == 1)
+                else if(find_string(msg, "ADXL-Acceleration") == 1)
                 {
-                    
+                    MQTT_Publish("bus/alert", "Acceleration");
+                    memset(msg, 0, msg_len);
+                    memset(msg_send, 0, 50);
+                    msg_len = 0;
+                }
+                else if(find_string(msg, "ADXL-Accident") == 1)
+                {
+                    MQTT_Publish("bus/alert", "Accident");
+                    memset(msg, 0, msg_len);
+                    memset(msg_send, 0, 50);
+                    msg_len = 0;
                 }
             }
         }
     }
     else
     {
-        Serial.println("ERROR");
-        ESP01_ConnectToWifi("WeMO", "@mo@01014001121#");
+        Serial.println("ESP NOT CONNECTED");
+        ESP01_ConnectToWifi("Jimmy", "11223344");
         flag = 1;
     }
 }

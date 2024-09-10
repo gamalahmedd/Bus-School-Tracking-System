@@ -9,7 +9,7 @@ UART_Config UART0_Cfg =
 	UART_TX_Enable,
 	UART_TX_Interrupt_Disable,
 	UART_RX_Enable,
-	UART_RX_Interrupt_Disable,
+	UART_RX_Interrupt_Enable,
 	UART_DoubleSpeed_Disable,
 	UART_BaudRate_9600
 };

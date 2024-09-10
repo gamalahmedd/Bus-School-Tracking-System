@@ -59,7 +59,7 @@ void mfrc522_write(uint8_t reg, uint8_t data)
 	//DISABLE_CHIP();
 }
 
-uint8_t mfrc522_read(uint8_t reg)
+u_int8 mfrc522_read(uint8_t reg)
 {
 	uint8_t data;	
 	//ENABLE_CHIP();
@@ -77,7 +77,7 @@ void mfrc522_reset()
 	mfrc522_write(CommandReg,SoftReset_CMD);
 }
 
-uint8_t	mfrc522_request(uint8_t req_mode, uint8_t * tag_type)
+u_int8	mfrc522_request(uint8_t req_mode, uint8_t * tag_type)
 {
 	uint8_t  status;  
 	uint32_t backBits;//The received data bits
@@ -95,7 +95,7 @@ uint8_t	mfrc522_request(uint8_t req_mode, uint8_t * tag_type)
 	return status;
 }
 
-uint8_t mfrc522_to_card(uint8_t cmd, uint8_t *send_data, uint8_t send_data_len, uint8_t *back_data, uint32_t *back_data_len)
+u_int8 mfrc522_to_card(uint8_t cmd, uint8_t *send_data, uint8_t send_data_len, uint8_t *back_data, uint32_t *back_data_len)
 {
 	uint8_t status = ERROR;
     uint8_t irqEn = 0x00;
@@ -212,7 +212,7 @@ uint8_t mfrc522_to_card(uint8_t cmd, uint8_t *send_data, uint8_t send_data_len, 
 }
 
 
-uint8_t mfrc522_get_card_serial(uint8_t * serial_out)
+u_int8 mfrc522_get_card_serial(uint8_t * serial_out)
 {
 	uint8_t status;
     uint8_t i;

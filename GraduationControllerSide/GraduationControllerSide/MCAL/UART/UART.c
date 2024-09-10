@@ -91,7 +91,6 @@ void UART0_TransmitString(u_int8 *String)
 	{
 		UART0_Transmit(String[j]);
 		j++;
-		_delay_ms(80);
 	}
 }
 
@@ -102,7 +101,6 @@ void UART1_TransmitString(u_int8 * String)
 	{
 		UART1_Transmit(String[j]);
 		j++;
-		_delay_ms(80);
 	}
 }
 

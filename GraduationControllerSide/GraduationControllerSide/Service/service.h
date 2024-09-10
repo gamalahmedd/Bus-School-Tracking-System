@@ -5,7 +5,6 @@
 #include "queue.h"
 #include "semphr.h"
 #include "event_groups.h"
-#include "../../MCAL/EXTI/EXTI.h"
 #include "../../HAL/ADXL345/ADXL345.h"
 #include "../../HAL/LCD/LCD.h"
 #include "../../HAL/ESP01/ESP01.h"
@@ -13,6 +12,9 @@
 #include "../../HAL/GPS/GPS.h"
 #include "../../MCAL/DIO/DIO.h"
 #include "../../MCAL/GIE/GIE.h"
+#include <stdio.h>
+#include <string.h>
+#include <avr/interrupt.h>
 #define ESP_PRIORITY 9
 #define ADXL_PRIORITY 8
 #define GPS_PRIORITY 7
@@ -29,18 +31,16 @@ void GPS_GetLocationTask(void *pvParam);
 void RFID_TakeAttendance(void *pvParam);
 void ADXL_SendAccidentAlertTask(void *pvParam);
 void ADXL_SendAccelerationAlertTask(void *pvParam);
-void INT4_Function();
-void INT5_Function();
 void startScheduler();
 
 /*------------------------------------------RTOS Variables----------------------------------------*/
 SemaphoreHandle_t ESP_SEM;
 SemaphoreHandle_t ACCIDENT_SEM;
+SemaphoreHandle_t GPS_SEM;
 SemaphoreHandle_t ACCELERATION_SEM;
 EventGroupHandle_t CHECK_CONNECTION;
 SemaphoreHandle_t UART1_SEND;
 u_int8 Reg;
-
 
 
 #endif /* SERVICE_H_ */
